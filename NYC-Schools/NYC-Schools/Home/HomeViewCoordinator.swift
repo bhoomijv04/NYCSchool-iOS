@@ -14,7 +14,7 @@ final class HomeViewCoordinator: SwiftUIEnqueueCoordinator {
     
     weak var rootHostingController: UIHostingController<HomeView>?
     
-    func instantiate() -> UIViewController {
+    func instantiateView() -> UIViewController {
         let viewModel = HomeViewModel()
         let rootView = HomeView(viewModel: viewModel)
         let viewController = UIHostingController(rootView: rootView)

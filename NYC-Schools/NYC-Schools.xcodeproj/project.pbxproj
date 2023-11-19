@@ -20,7 +20,9 @@
 		749017C72B0A541C003968BC /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 749017C62B0A541C003968BC /* HomeView.swift */; };
 		749017CA2B0A55E5003968BC /* SwiftUICoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 749017C92B0A55E5003968BC /* SwiftUICoordinator.swift */; };
 		749017CE2B0A58E8003968BC /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 749017D02B0A58E8003968BC /* Localizable.strings */; };
-		749017D22B0A5EE5003968BC /* Localized.swift in Sources */ = {isa = PBXBuildFile; fileRef = 749017D12B0A5EE5003968BC /* Localized.swift */; };
+		749017D22B0A5EE5003968BC /* Localisation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 749017D12B0A5EE5003968BC /* Localisation.swift */; };
+		749017D82B0A8459003968BC /* schoolsData.json in Resources */ = {isa = PBXBuildFile; fileRef = 749017D62B0A8459003968BC /* schoolsData.json */; };
+		749017D92B0A8459003968BC /* scoresData.json in Resources */ = {isa = PBXBuildFile; fileRef = 749017D72B0A8459003968BC /* scoresData.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,7 +60,9 @@
 		749017C62B0A541C003968BC /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		749017C92B0A55E5003968BC /* SwiftUICoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUICoordinator.swift; sourceTree = "<group>"; };
 		749017CF2B0A58E8003968BC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		749017D12B0A5EE5003968BC /* Localized.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localized.swift; sourceTree = "<group>"; };
+		749017D12B0A5EE5003968BC /* Localisation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localisation.swift; sourceTree = "<group>"; };
+		749017D62B0A8459003968BC /* schoolsData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = schoolsData.json; sourceTree = "<group>"; };
+		749017D72B0A8459003968BC /* scoresData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = scoresData.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,13 +114,10 @@
 			isa = PBXGroup;
 			children = (
 				749017C82B0A557C003968BC /* AppFlow */,
-				749017CB2B0A560F003968BC /* Protocol */,
 				749017BF2B0A4D1C003968BC /* Home */,
-				749017962B0A4BB2003968BC /* Assets.xcassets */,
-				749017982B0A4BB2003968BC /* LaunchScreen.storyboard */,
+				749017CB2B0A560F003968BC /* Protocol */,
 				7490179B2B0A4BB2003968BC /* Info.plist */,
-				749017D02B0A58E8003968BC /* Localizable.strings */,
-				749017D12B0A5EE5003968BC /* Localized.swift */,
+				749017D42B0A8347003968BC /* Resources */,
 			);
 			path = "NYC-Schools";
 			sourceTree = "<group>";
@@ -164,6 +165,35 @@
 				749017C92B0A55E5003968BC /* SwiftUICoordinator.swift */,
 			);
 			path = Protocol;
+			sourceTree = "<group>";
+		};
+		749017D32B0A8305003968BC /* Localisation */ = {
+			isa = PBXGroup;
+			children = (
+				749017D12B0A5EE5003968BC /* Localisation.swift */,
+				749017D02B0A58E8003968BC /* Localizable.strings */,
+			);
+			path = Localisation;
+			sourceTree = "<group>";
+		};
+		749017D42B0A8347003968BC /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				749017D52B0A8459003968BC /* JSON */,
+				749017D32B0A8305003968BC /* Localisation */,
+				749017982B0A4BB2003968BC /* LaunchScreen.storyboard */,
+				749017962B0A4BB2003968BC /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		749017D52B0A8459003968BC /* JSON */ = {
+			isa = PBXGroup;
+			children = (
+				749017D62B0A8459003968BC /* schoolsData.json */,
+				749017D72B0A8459003968BC /* scoresData.json */,
+			);
+			path = JSON;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -272,7 +302,9 @@
 			files = (
 				7490179A2B0A4BB2003968BC /* LaunchScreen.storyboard in Resources */,
 				749017CE2B0A58E8003968BC /* Localizable.strings in Resources */,
+				749017D92B0A8459003968BC /* scoresData.json in Resources */,
 				749017972B0A4BB2003968BC /* Assets.xcassets in Resources */,
+				749017D82B0A8459003968BC /* schoolsData.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -298,7 +330,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				749017C52B0A52DE003968BC /* HomeViewCoordinator.swift in Sources */,
-				749017D22B0A5EE5003968BC /* Localized.swift in Sources */,
+				749017D22B0A5EE5003968BC /* Localisation.swift in Sources */,
 				749017CA2B0A55E5003968BC /* SwiftUICoordinator.swift in Sources */,
 				749017C72B0A541C003968BC /* HomeView.swift in Sources */,
 				749017922B0A4BB0003968BC /* HomeViewController.swift in Sources */,
