@@ -10,7 +10,9 @@ import Foundation
 public final class SchoolDetailViewModel: ObservableObject {
     
     public enum RouteType {
-        case goToDetailsView
+        case callNumber
+        case email
+        case openMap
     }
     
     private let coordinator: any SwiftUIEnqueueCoordinator<SchoolDetailViewModel.RouteType>
@@ -19,8 +21,3 @@ public final class SchoolDetailViewModel: ObservableObject {
         self.coordinator = coordinator
     }
 }
-
-
-
-
-

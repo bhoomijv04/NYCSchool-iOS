@@ -18,7 +18,7 @@ public struct HomeView: View {
     public var body: some View {
         NavigationView {
             List {
-                ForEach(viewModel.schools, id: \.school.id) { item in
+                ForEach(viewModel.schools, id: \.id) { item in
                     NavigationLink(destination: {
                         viewModel.coordinator.enqueueRoute(with: .goToDetailsView(viewModel: item.school), animated: true, completion: nil)
                     }){
@@ -29,6 +29,9 @@ public struct HomeView: View {
             .navigationBarTitleDisplayMode(.inline)
             .navigationTitle("home.title".localized)
             .listStyle(.plain)
+            .task {
+                await viewModel.getNYCSchoolList()
+            }
         }
         
     }
@@ -50,7 +53,7 @@ struct HomeViewCell: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 3) {
-            Text(viewModel.school.name.capitalized)
+            Text(viewModel.school.school_name.capitalized)
                 .foregroundColor(.primary)
                 .font(.subheadline)
             HStack(alignment: .center, spacing: 3) {

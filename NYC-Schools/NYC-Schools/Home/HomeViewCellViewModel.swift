@@ -10,58 +10,76 @@ import Foundation
 public final class HomeViewCellViewModel: ObservableObject {
     
     public var school: NYCSchool
+    public var id: UUID
     
-    public init(data: NYCSchool) {
+    public init(data: NYCSchool, id: UUID = UUID()) {
         self.school = data
+        self.id = id
     }
-    static let sampleData = [
-        HomeViewCellViewModel(data: NYCSchool(dbn: "21K728", name: "Liberation Diploma Plus High School", overview: "", phoneNumber: "", email: "", website: "", totalStudents: 206, graduationRate: nil, attendanceRate: nil, latitude: nil, longitude: nil, borough: "BROOKLYN")),
-        HomeViewCellViewModel(data: NYCSchool(dbn: "08X282", name: "Women's Academy of Excellence", overview: "The Women’s Academy of Excellence is an all-girls public high school, serving grades 9-12. Our mission is to create a community of lifelong learners, to nurture the intellectual curiosity and creativity of young women and to address their developmental needs. The school community cultivates dynamic, participatory learning, enabling students to achieve academic success at many levels, especially in the fields of math, science, and civic responsibility. Our scholars are exposed to a challenging curriculum that encourages them to achieve their goals while being empowered to become young women and leaders. Our Philosophy is GIRLS MATTER!", phoneNumber: "718-542-0740", email: "sburns@schools.nyc.gov", website: "schools.nyc.gov/SchoolPortals/08/X282", totalStudents: 338, graduationRate: 0.612999976, attendanceRate: nil, latitude: nil, longitude: nil, borough: "BRONX    ")),
-        HomeViewCellViewModel(data: NYCSchool(dbn: "21K728", name: "Liberation Diploma Plus High School", overview: "", phoneNumber: "", email: "", website: "", totalStudents: 206, graduationRate: nil, attendanceRate: nil, latitude: nil, longitude: nil, borough: "BROOKLYN")),
-        HomeViewCellViewModel(data: NYCSchool(dbn: "08X282", name: "Women's Academy of Excellence", overview: "The Women’s Academy of Excellence is an all-girls public high school, serving grades 9-12. Our mission is to create a community of lifelong learners, to nurture the intellectual curiosity and creativity of young women and to address their developmental needs. The school community cultivates dynamic, participatory learning, enabling students to achieve academic success at many levels, especially in the fields of math, science, and civic responsibility. Our scholars are exposed to a challenging curriculum that encourages them to achieve their goals while being empowered to become young women and leaders. Our Philosophy is GIRLS MATTER!", phoneNumber: "718-542-0740", email: "sburns@schools.nyc.gov", website: "schools.nyc.gov/SchoolPortals/08/X282", totalStudents: 338, graduationRate: 0.612999976, attendanceRate: nil, latitude: nil, longitude: nil, borough: "BRONX    ")),
-        HomeViewCellViewModel(data: NYCSchool(dbn: "21K728", name: "Liberation Diploma Plus High School", overview: "", phoneNumber: "", email: "", website: "", totalStudents: 206, graduationRate: nil, attendanceRate: nil, latitude: nil, longitude: nil, borough: "BROOKLYN")),
-        HomeViewCellViewModel(data: NYCSchool(dbn: "08X282", name: "Women's Academy of Excellence", overview: "The Women’s Academy of Excellence is an all-girls public high school, serving grades 9-12. Our mission is to create a community of lifelong learners, to nurture the intellectual curiosity and creativity of young women and to address their developmental needs. The school community cultivates dynamic, participatory learning, enabling students to achieve academic success at many levels, especially in the fields of math, science, and civic responsibility. Our scholars are exposed to a challenging curriculum that encourages them to achieve their goals while being empowered to become young women and leaders. Our Philosophy is GIRLS MATTER!", phoneNumber: "718-542-0740", email: "sburns@schools.nyc.gov", website: "schools.nyc.gov/SchoolPortals/08/X282", totalStudents: 338, graduationRate: 0.612999976, attendanceRate: nil, latitude: nil, longitude: nil, borough: "BRONX    ")),
-        HomeViewCellViewModel(data: NYCSchool(dbn: "21K728", name: "Liberation Diploma Plus High School", overview: "", phoneNumber: "", email: "", website: "", totalStudents: 206, graduationRate: nil, attendanceRate: nil, latitude: nil, longitude: nil, borough: "BROOKLYN")),
-        HomeViewCellViewModel(data: NYCSchool(dbn: "08X282", name: "Women's Academy of Excellence", overview: "The Women’s Academy of Excellence is an all-girls public high school, serving grades 9-12. Our mission is to create a community of lifelong learners, to nurture the intellectual curiosity and creativity of young women and to address their developmental needs. The school community cultivates dynamic, participatory learning, enabling students to achieve academic success at many levels, especially in the fields of math, science, and civic responsibility. Our scholars are exposed to a challenging curriculum that encourages them to achieve their goals while being empowered to become young women and leaders. Our Philosophy is GIRLS MATTER!", phoneNumber: "718-542-0740", email: "sburns@schools.nyc.gov", website: "schools.nyc.gov/SchoolPortals/08/X282", totalStudents: 338, graduationRate: 0.612999976, attendanceRate: nil, latitude: nil, longitude: nil, borough: "BRONX    ")),
-        HomeViewCellViewModel(data: NYCSchool(dbn: "21K728", name: "Liberation Diploma Plus High School", overview: "", phoneNumber: "", email: "", website: "", totalStudents: 206, graduationRate: nil, attendanceRate: nil, latitude: nil, longitude: nil, borough: "BROOKLYN")),
-        HomeViewCellViewModel(data: NYCSchool(dbn: "08X282", name: "Women's Academy of Excellence", overview: "The Women’s Academy of Excellence is an all-girls public high school, serving grades 9-12. Our mission is to create a community of lifelong learners, to nurture the intellectual curiosity and creativity of young women and to address their developmental needs. The school community cultivates dynamic, participatory learning, enabling students to achieve academic success at many levels, especially in the fields of math, science, and civic responsibility. Our scholars are exposed to a challenging curriculum that encourages them to achieve their goals while being empowered to become young women and leaders. Our Philosophy is GIRLS MATTER!", phoneNumber: "718-542-0740", email: "sburns@schools.nyc.gov", website: "schools.nyc.gov/SchoolPortals/08/X282", totalStudents: 338, graduationRate: 0.612999976, attendanceRate: nil, latitude: nil, longitude: nil, borough: "BRONX    "))
-    ]
 }
 
-public struct NYCSchool: Identifiable {
-    public var id: UUID
+public struct NYCSchool: Decodable {
+    
     public let dbn: String
-    public let name: String
-    public let overview: String?
+    public let school_name: String
+    public let overview_paragraph: String?
     //contact
-    public let phoneNumber: String?
-    public let email: String?
+    public let phone_number: String?
+    public let school_email: String?
     public let website: String?
-    public let totalStudents: Int?
+    public let total_students: Int?
     // rate
-    public let graduationRate: Double?
-    public let attendanceRate: Double?
+    public let graduation_rate: Double?
+    public let attendance_rate: Double?
     // location
     public let latitude: Double?
     public let longitude: Double?
     public let borough: String?
     
     
-    public init(id: UUID = UUID(), dbn: String, name: String, overview: String?, phoneNumber: String?, email: String?, website: String?, totalStudents: Int?, graduationRate: Double?, attendanceRate: Double?, latitude: Double?, longitude: Double?, borough: String?) {
-        self.id = id
+    public init(dbn: String, name: String, overview: String?, phoneNumber: String?, email: String?, website: String?, totalStudents: Int?, graduationRate: Double?, attendanceRate: Double?, latitude: Double?, longitude: Double?, borough: String?) {
         self.dbn = dbn
-        self.name = name
-        self.overview = overview
-        self.phoneNumber = phoneNumber
-        self.email = email
+        self.school_name = name
+        self.overview_paragraph = overview
+        self.phone_number = phoneNumber
+        self.school_email = email
         self.website = website
-        self.totalStudents = totalStudents
-        self.graduationRate = graduationRate
-        self.attendanceRate = attendanceRate
+        self.total_students = totalStudents
+        self.graduation_rate = graduationRate
+        self.attendance_rate = attendanceRate
         self.latitude = latitude
         self.longitude = longitude
         self.borough = borough
     }
+    
+    enum CodingKeys: String, CodingKey {
+        case dbn, phone_number, website, total_students, graduation_rate, attendance_rate, latitude, longitude, borough,school_name,overview_paragraph,school_email
+    }
+    
+    public init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        dbn = try values.decode(String.self, forKey: .dbn)
+        
+        school_name = (try values.decode(String.self, forKey: .school_name)).replacingOccurrences(of: "Â", with: "")
+        
+        overview_paragraph = (try? values.decode(String.self, forKey: .overview_paragraph))?.replacingOccurrences(of: "Â", with: "")
+        
+        phone_number = try? values.decode(String.self, forKey: .phone_number)
+        school_email = try? values.decode(String.self, forKey: .school_email)
+        
+        let rawWebsite = try? values.decode(String.self, forKey: .website)
+        if let rawWebsite {
+            website = !rawWebsite.hasPrefix("http") ? "http://" + rawWebsite : rawWebsite
+        } else {
+            website = nil
+        }
+        
+        total_students = Int(try values.decode(String.self, forKey: .total_students))
+        graduation_rate = Double((try? values.decode(String.self, forKey: .graduation_rate)) ?? "")
+        attendance_rate = Double((try? values.decode(String.self, forKey: .attendance_rate)) ?? "")
+        latitude = Double((try? values.decode(String.self, forKey: .latitude)) ?? "")
+        longitude = Double((try? values.decode(String.self, forKey: .longitude)) ?? "")
+        borough = try? values.decode(String.self, forKey: .borough)
+    }
 }
-
 

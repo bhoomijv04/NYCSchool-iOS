@@ -10,6 +10,11 @@
 		748569792B0F5B58000CD4BB /* SchoolDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748569752B0F5B58000CD4BB /* SchoolDetailViewModel.swift */; };
 		7485697A2B0F5B58000CD4BB /* SchoolDetailViewCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748569762B0F5B58000CD4BB /* SchoolDetailViewCoordinator.swift */; };
 		7485697B2B0F5B58000CD4BB /* SchoolDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748569772B0F5B58000CD4BB /* SchoolDetailView.swift */; };
+		7485697F2B0F713A000CD4BB /* NetworkingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7485697E2B0F713A000CD4BB /* NetworkingService.swift */; };
+		748569812B0F73E0000CD4BB /* NetworkingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748569802B0F73E0000CD4BB /* NetworkingError.swift */; };
+		748569852B0F78EC000CD4BB /* SchoolService .swift in Sources */ = {isa = PBXBuildFile; fileRef = 748569842B0F78EC000CD4BB /* SchoolService .swift */; };
+		748569872B0F7CE8000CD4BB /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748569862B0F7CE8000CD4BB /* LoadingView.swift */; };
+		7485698A2B0F7D7F000CD4BB /* SwiftfulLoadingIndicators in Frameworks */ = {isa = PBXBuildFile; productRef = 748569892B0F7D7F000CD4BB /* SwiftfulLoadingIndicators */; };
 		7490178E2B0A4BB0003968BC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7490178D2B0A4BB0003968BC /* AppDelegate.swift */; };
 		749017902B0A4BB0003968BC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7490178F2B0A4BB0003968BC /* SceneDelegate.swift */; };
 		749017972B0A4BB2003968BC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 749017962B0A4BB2003968BC /* Assets.xcassets */; };
@@ -23,7 +28,7 @@
 		749017CA2B0A55E5003968BC /* SwiftUICoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 749017C92B0A55E5003968BC /* SwiftUICoordinator.swift */; };
 		749017CE2B0A58E8003968BC /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 749017D02B0A58E8003968BC /* Localizable.strings */; };
 		749017D22B0A5EE5003968BC /* Localisation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 749017D12B0A5EE5003968BC /* Localisation.swift */; };
-		749017D82B0A8459003968BC /* schoolsData.json in Resources */ = {isa = PBXBuildFile; fileRef = 749017D62B0A8459003968BC /* schoolsData.json */; };
+		749017D82B0A8459003968BC /* schoolsList.json in Resources */ = {isa = PBXBuildFile; fileRef = 749017D62B0A8459003968BC /* schoolsList.json */; };
 		749017D92B0A8459003968BC /* scoresData.json in Resources */ = {isa = PBXBuildFile; fileRef = 749017D72B0A8459003968BC /* scoresData.json */; };
 		74BAB1662B0A930F009C676E /* HomeViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74BAB1652B0A930F009C676E /* HomeViewCellViewModel.swift */; };
 /* End PBXBuildFile section */
@@ -49,6 +54,10 @@
 		748569752B0F5B58000CD4BB /* SchoolDetailViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchoolDetailViewModel.swift; sourceTree = "<group>"; };
 		748569762B0F5B58000CD4BB /* SchoolDetailViewCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchoolDetailViewCoordinator.swift; sourceTree = "<group>"; };
 		748569772B0F5B58000CD4BB /* SchoolDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchoolDetailView.swift; sourceTree = "<group>"; };
+		7485697E2B0F713A000CD4BB /* NetworkingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingService.swift; sourceTree = "<group>"; };
+		748569802B0F73E0000CD4BB /* NetworkingError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingError.swift; sourceTree = "<group>"; };
+		748569842B0F78EC000CD4BB /* SchoolService .swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SchoolService .swift"; sourceTree = "<group>"; };
+		748569862B0F7CE8000CD4BB /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		7490178A2B0A4BB0003968BC /* NYC-Schools.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "NYC-Schools.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7490178D2B0A4BB0003968BC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7490178F2B0A4BB0003968BC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -66,7 +75,7 @@
 		749017C92B0A55E5003968BC /* SwiftUICoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUICoordinator.swift; sourceTree = "<group>"; };
 		749017CF2B0A58E8003968BC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		749017D12B0A5EE5003968BC /* Localisation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localisation.swift; sourceTree = "<group>"; };
-		749017D62B0A8459003968BC /* schoolsData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = schoolsData.json; sourceTree = "<group>"; };
+		749017D62B0A8459003968BC /* schoolsList.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = schoolsList.json; sourceTree = "<group>"; };
 		749017D72B0A8459003968BC /* scoresData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = scoresData.json; sourceTree = "<group>"; };
 		74BAB1652B0A930F009C676E /* HomeViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewCellViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -76,6 +85,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7485698A2B0F7D7F000CD4BB /* SwiftfulLoadingIndicators in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -106,6 +116,17 @@
 			path = SchoolDetail;
 			sourceTree = "<group>";
 		};
+		7485697D2B0F7123000CD4BB /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				748569842B0F78EC000CD4BB /* SchoolService .swift */,
+				7485697E2B0F713A000CD4BB /* NetworkingService.swift */,
+				748569802B0F73E0000CD4BB /* NetworkingError.swift */,
+			);
+			name = Networking;
+			path = "NYC-Schools/Networking";
+			sourceTree = SOURCE_ROOT;
+		};
 		749017812B0A4BB0003968BC = {
 			isa = PBXGroup;
 			children = (
@@ -132,9 +153,11 @@
 				749017C82B0A557C003968BC /* AppFlow */,
 				749017BF2B0A4D1C003968BC /* Home */,
 				748569742B0F5B58000CD4BB /* SchoolDetail */,
+				7485697D2B0F7123000CD4BB /* Networking */,
 				749017CB2B0A560F003968BC /* Protocol */,
 				7490179B2B0A4BB2003968BC /* Info.plist */,
 				749017D42B0A8347003968BC /* Resources */,
+				748569862B0F7CE8000CD4BB /* LoadingView.swift */,
 			);
 			path = "NYC-Schools";
 			sourceTree = "<group>";
@@ -207,7 +230,7 @@
 		749017D52B0A8459003968BC /* JSON */ = {
 			isa = PBXGroup;
 			children = (
-				749017D62B0A8459003968BC /* schoolsData.json */,
+				749017D62B0A8459003968BC /* schoolsList.json */,
 				749017D72B0A8459003968BC /* scoresData.json */,
 			);
 			path = JSON;
@@ -229,6 +252,9 @@
 			dependencies = (
 			);
 			name = "NYC-Schools";
+			packageProductDependencies = (
+				748569892B0F7D7F000CD4BB /* SwiftfulLoadingIndicators */,
+			);
 			productName = "NYC-Schools";
 			productReference = 7490178A2B0A4BB0003968BC /* NYC-Schools.app */;
 			productType = "com.apple.product-type.application";
@@ -301,6 +327,9 @@
 				Base,
 			);
 			mainGroup = 749017812B0A4BB0003968BC;
+			packageReferences = (
+				748569882B0F7D7F000CD4BB /* XCRemoteSwiftPackageReference "SwiftfulLoadingIndicators" */,
+			);
 			productRefGroup = 7490178B2B0A4BB0003968BC /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -321,7 +350,7 @@
 				749017CE2B0A58E8003968BC /* Localizable.strings in Resources */,
 				749017D92B0A8459003968BC /* scoresData.json in Resources */,
 				749017972B0A4BB2003968BC /* Assets.xcassets in Resources */,
-				749017D82B0A8459003968BC /* schoolsData.json in Resources */,
+				749017D82B0A8459003968BC /* schoolsList.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -349,13 +378,17 @@
 				749017C52B0A52DE003968BC /* HomeViewCoordinator.swift in Sources */,
 				749017D22B0A5EE5003968BC /* Localisation.swift in Sources */,
 				749017CA2B0A55E5003968BC /* SwiftUICoordinator.swift in Sources */,
+				7485697F2B0F713A000CD4BB /* NetworkingService.swift in Sources */,
 				749017C72B0A541C003968BC /* HomeView.swift in Sources */,
 				74BAB1662B0A930F009C676E /* HomeViewCellViewModel.swift in Sources */,
 				7485697A2B0F5B58000CD4BB /* SchoolDetailViewCoordinator.swift in Sources */,
 				7490178E2B0A4BB0003968BC /* AppDelegate.swift in Sources */,
+				748569872B0F7CE8000CD4BB /* LoadingView.swift in Sources */,
 				748569792B0F5B58000CD4BB /* SchoolDetailViewModel.swift in Sources */,
 				749017C32B0A52CD003968BC /* HomeViewModel.swift in Sources */,
+				748569812B0F73E0000CD4BB /* NetworkingError.swift in Sources */,
 				749017902B0A4BB0003968BC /* SceneDelegate.swift in Sources */,
+				748569852B0F78EC000CD4BB /* SchoolService .swift in Sources */,
 				7485697B2B0F5B58000CD4BB /* SchoolDetailView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -698,6 +731,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		748569882B0F7D7F000CD4BB /* XCRemoteSwiftPackageReference "SwiftfulLoadingIndicators" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftfulThinking/SwiftfulLoadingIndicators.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.0.4;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		748569892B0F7D7F000CD4BB /* SwiftfulLoadingIndicators */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 748569882B0F7D7F000CD4BB /* XCRemoteSwiftPackageReference "SwiftfulLoadingIndicators" */;
+			productName = SwiftfulLoadingIndicators;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 749017822B0A4BB0003968BC /* Project object */;
 }
