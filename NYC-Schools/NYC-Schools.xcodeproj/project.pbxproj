@@ -7,9 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		748569792B0F5B58000CD4BB /* SchoolDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748569752B0F5B58000CD4BB /* SchoolDetailViewModel.swift */; };
+		7485697A2B0F5B58000CD4BB /* SchoolDetailViewCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748569762B0F5B58000CD4BB /* SchoolDetailViewCoordinator.swift */; };
+		7485697B2B0F5B58000CD4BB /* SchoolDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748569772B0F5B58000CD4BB /* SchoolDetailView.swift */; };
 		7490178E2B0A4BB0003968BC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7490178D2B0A4BB0003968BC /* AppDelegate.swift */; };
 		749017902B0A4BB0003968BC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7490178F2B0A4BB0003968BC /* SceneDelegate.swift */; };
-		749017922B0A4BB0003968BC /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 749017912B0A4BB0003968BC /* HomeViewController.swift */; };
 		749017972B0A4BB2003968BC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 749017962B0A4BB2003968BC /* Assets.xcassets */; };
 		7490179A2B0A4BB2003968BC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 749017982B0A4BB2003968BC /* LaunchScreen.storyboard */; };
 		749017A52B0A4BB3003968BC /* NYC_SchoolsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 749017A42B0A4BB3003968BC /* NYC_SchoolsTests.swift */; };
@@ -23,6 +25,7 @@
 		749017D22B0A5EE5003968BC /* Localisation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 749017D12B0A5EE5003968BC /* Localisation.swift */; };
 		749017D82B0A8459003968BC /* schoolsData.json in Resources */ = {isa = PBXBuildFile; fileRef = 749017D62B0A8459003968BC /* schoolsData.json */; };
 		749017D92B0A8459003968BC /* scoresData.json in Resources */ = {isa = PBXBuildFile; fileRef = 749017D72B0A8459003968BC /* scoresData.json */; };
+		74BAB1662B0A930F009C676E /* HomeViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74BAB1652B0A930F009C676E /* HomeViewCellViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,10 +46,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		748569752B0F5B58000CD4BB /* SchoolDetailViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchoolDetailViewModel.swift; sourceTree = "<group>"; };
+		748569762B0F5B58000CD4BB /* SchoolDetailViewCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchoolDetailViewCoordinator.swift; sourceTree = "<group>"; };
+		748569772B0F5B58000CD4BB /* SchoolDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchoolDetailView.swift; sourceTree = "<group>"; };
 		7490178A2B0A4BB0003968BC /* NYC-Schools.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "NYC-Schools.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7490178D2B0A4BB0003968BC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7490178F2B0A4BB0003968BC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		749017912B0A4BB0003968BC /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		749017962B0A4BB2003968BC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		749017992B0A4BB2003968BC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7490179B2B0A4BB2003968BC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -63,6 +68,7 @@
 		749017D12B0A5EE5003968BC /* Localisation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localisation.swift; sourceTree = "<group>"; };
 		749017D62B0A8459003968BC /* schoolsData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = schoolsData.json; sourceTree = "<group>"; };
 		749017D72B0A8459003968BC /* scoresData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = scoresData.json; sourceTree = "<group>"; };
+		74BAB1652B0A930F009C676E /* HomeViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewCellViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +96,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		748569742B0F5B58000CD4BB /* SchoolDetail */ = {
+			isa = PBXGroup;
+			children = (
+				748569752B0F5B58000CD4BB /* SchoolDetailViewModel.swift */,
+				748569762B0F5B58000CD4BB /* SchoolDetailViewCoordinator.swift */,
+				748569772B0F5B58000CD4BB /* SchoolDetailView.swift */,
+			);
+			path = SchoolDetail;
+			sourceTree = "<group>";
+		};
 		749017812B0A4BB0003968BC = {
 			isa = PBXGroup;
 			children = (
@@ -115,6 +131,7 @@
 			children = (
 				749017C82B0A557C003968BC /* AppFlow */,
 				749017BF2B0A4D1C003968BC /* Home */,
+				748569742B0F5B58000CD4BB /* SchoolDetail */,
 				749017CB2B0A560F003968BC /* Protocol */,
 				7490179B2B0A4BB2003968BC /* Info.plist */,
 				749017D42B0A8347003968BC /* Resources */,
@@ -142,10 +159,10 @@
 		749017BF2B0A4D1C003968BC /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				749017912B0A4BB0003968BC /* HomeViewController.swift */,
 				749017C22B0A52CD003968BC /* HomeViewModel.swift */,
 				749017C42B0A52DE003968BC /* HomeViewCoordinator.swift */,
 				749017C62B0A541C003968BC /* HomeView.swift */,
+				74BAB1652B0A930F009C676E /* HomeViewCellViewModel.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -333,10 +350,13 @@
 				749017D22B0A5EE5003968BC /* Localisation.swift in Sources */,
 				749017CA2B0A55E5003968BC /* SwiftUICoordinator.swift in Sources */,
 				749017C72B0A541C003968BC /* HomeView.swift in Sources */,
-				749017922B0A4BB0003968BC /* HomeViewController.swift in Sources */,
+				74BAB1662B0A930F009C676E /* HomeViewCellViewModel.swift in Sources */,
+				7485697A2B0F5B58000CD4BB /* SchoolDetailViewCoordinator.swift in Sources */,
 				7490178E2B0A4BB0003968BC /* AppDelegate.swift in Sources */,
+				748569792B0F5B58000CD4BB /* SchoolDetailViewModel.swift in Sources */,
 				749017C32B0A52CD003968BC /* HomeViewModel.swift in Sources */,
 				749017902B0A4BB0003968BC /* SceneDelegate.swift in Sources */,
+				7485697B2B0F5B58000CD4BB /* SchoolDetailView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -442,7 +462,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -496,7 +516,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -518,9 +538,9 @@
 				INFOPLIST_FILE = "NYC-Schools/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -546,9 +566,9 @@
 				INFOPLIST_FILE = "NYC-Schools/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

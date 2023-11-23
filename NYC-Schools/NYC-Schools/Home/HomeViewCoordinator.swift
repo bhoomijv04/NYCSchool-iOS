@@ -15,7 +15,7 @@ final class HomeViewCoordinator: SwiftUIEnqueueCoordinator {
     weak var rootHostingController: UIHostingController<HomeView>?
     
     func instantiateView() -> UIViewController {
-        let viewModel = HomeViewModel()
+        let viewModel = HomeViewModel(coordinator: self)
         let rootView = HomeView(viewModel: viewModel)
         let viewController = UIHostingController(rootView: rootView)
         self.rootHostingController = viewController
@@ -25,9 +25,9 @@ final class HomeViewCoordinator: SwiftUIEnqueueCoordinator {
     func enqueueRoute(with context: HomeViewModel.RouteType, animated: Bool, completion: ((Bool) -> Void)?) -> AnyView? {
         switch context {
             
-        case .goToDetailsView:
-            rootHostingController?.navigationController?.popViewController(animated: true)
+        case .goToDetailsView(let model):
+            print(model)
+            return AnyView(SchoolDetailViewCoordinator().instantiateView())
         }
-        return nil
     }
 }
