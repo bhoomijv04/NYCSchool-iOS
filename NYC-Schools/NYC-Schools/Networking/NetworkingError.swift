@@ -7,7 +7,7 @@
 
 import Foundation
 
-
+// MARK: Network Error
 enum NetworkingError: Error {
     case invalidURL
     case customError(error: Error)

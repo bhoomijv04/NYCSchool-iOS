@@ -7,6 +7,15 @@
 
 import Foundation
 
+/*
+ 
+ NYC Open Data
+ Directory: 2017 DOE High School Directory
+ https://data.cityofnewyork.us/Education/2017-DOE-High-School-Directory/s3k6-pzi2
+ 
+ */
+
+// MARK: Network task Protocol
 public protocol NetworkingServiceProtocol {
     func makeRequest<T: Decodable>(session: URLSession, _ absoluteURL: String) async throws -> T
 }
@@ -20,16 +29,16 @@ public final class NetworkingService: NSObject {
 
 extension NetworkingService : NetworkingServiceProtocol {
     public func makeRequest<T: Decodable>(session: URLSession = .shared, _ absoluteURL: String) async throws -> T {
-        let urlSession = URLSession(configuration: URLSessionConfiguration.ephemeral,
-                                    delegate: self,
-                                    delegateQueue: nil)
+        
         guard let url = URL(string: absoluteURL) else { throw NetworkingError.invalidURL }
         
-        let request = URLRequest(url: url)
+        var request = URLRequest(url: url)
+        request.setValue("X-App-Token", forHTTPHeaderField: "mtMETbliAcn6mWopyAo3mj2Cq")
+        request.setValue("Content-Type", forHTTPHeaderField: "application/json")
         
         let response: (Data, URLResponse)
         do {
-            response = try await urlSession.data(for: request)
+            response = try await session.data(for: request)
         } catch {
             throw NetworkingError.customError(error: error)
         }
@@ -50,6 +59,7 @@ extension NetworkingService : NetworkingServiceProtocol {
         }
     }
 }
+
 extension NetworkingService: URLSessionDelegate {
     public func urlSession(_: URLSession, task _: URLSessionTask, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
         guard let serverTrust = challenge.protectionSpace.serverTrust else {
@@ -59,6 +69,7 @@ extension NetworkingService: URLSessionDelegate {
     }
 }
 
+// MARK: AVOID SSL Certifficate Error
 extension URLRequest {
 #if DEBUG
     static func allowsAnyHTTPSCertificate(forHost host: String) -> Bool {

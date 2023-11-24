@@ -14,8 +14,10 @@ public final class SchoolDetailViewModel: ObservableObject {
         case email
         case openMap
     }
+    @Published private(set) var schoolSATScore: SchoolDetaislScoreModel?
     
     private let coordinator: any SwiftUIEnqueueCoordinator<SchoolDetailViewModel.RouteType>
+    private let schoolService: SchoolServiceProtocol = SchoolService.shared
     
     public init(coordinator: any SwiftUIEnqueueCoordinator<SchoolDetailViewModel.RouteType>) {
         self.coordinator = coordinator

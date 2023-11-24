@@ -20,7 +20,7 @@ public struct HomeView: View {
             List {
                 ForEach(viewModel.schools, id: \.id) { item in
                     NavigationLink(destination: {
-                        viewModel.coordinator.enqueueRoute(with: .goToDetailsView(viewModel: item.school), animated: true, completion: nil)
+                        viewModel.coordinator.enqueueRoute(with: .goToDetailsView(viewModel: item), animated: true, completion: nil)
                     }){
                         HomeViewCell(viewModel: item)
                     }

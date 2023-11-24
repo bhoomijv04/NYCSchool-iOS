@@ -14,6 +14,7 @@ final class HomeViewCoordinator: SwiftUIEnqueueCoordinator {
     
     weak var rootHostingController: UIHostingController<HomeView>?
     
+    // MARK: Intitate HomeView
     func instantiateView() -> UIViewController {
         let viewModel = HomeViewModel(coordinator: self)
         let rootView = HomeView(viewModel: viewModel)
@@ -22,12 +23,13 @@ final class HomeViewCoordinator: SwiftUIEnqueueCoordinator {
         return viewController
     }
     
+    // MARK: Navigation route from HomeView
     func enqueueRoute(with context: HomeViewModel.RouteType, animated: Bool, completion: ((Bool) -> Void)?) -> AnyView? {
         switch context {
             
-        case .goToDetailsView(let model):
-            print(model)
-            return AnyView(SchoolDetailViewCoordinator().instantiateView())
+        case .goToDetailsView(let schoolModel):
+            print(schoolModel)
+            return AnyView(SchoolDetailViewCoordinator().instantiateView(school: schoolModel))
         }
     }
 }

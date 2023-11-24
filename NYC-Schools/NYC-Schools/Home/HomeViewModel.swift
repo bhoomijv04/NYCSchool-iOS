@@ -10,7 +10,7 @@ import Foundation
 public final class HomeViewModel: ObservableObject {
     
     public enum RouteType {
-        case goToDetailsView(viewModel:NYCSchool)
+        case goToDetailsView(viewModel: HomeViewCellViewModel)
     }
     
     public enum State: Equatable {
@@ -20,14 +20,13 @@ public final class HomeViewModel: ObservableObject {
     }
     @Published public private(set) var state: State = .noContent
     @Published private(set) var schools: [HomeViewCellViewModel] = [HomeViewCellViewModel]()
+    @Published private(set) var schoolsScore: [SchoolDetaislScoreModel] = [SchoolDetaislScoreModel]()
     
     public let coordinator: any SwiftUIEnqueueCoordinator<HomeViewModel.RouteType>
-    private let schoolService: SchoolServiceProtocol
+    private let schoolService: SchoolServiceProtocol = SchoolService.shared
     
-    public init(coordinator: any SwiftUIEnqueueCoordinator<HomeViewModel.RouteType>, service: any NetworkingServiceProtocol = NetworkingService()) {
+    public init(coordinator: any SwiftUIEnqueueCoordinator<HomeViewModel.RouteType>) {
         self.coordinator = coordinator
-        self.schools = HomeViewCellViewModel.sampleData
-        schoolService = SchoolService()
     }
     
     public func getNYCSchoolList() async {
@@ -35,11 +34,17 @@ public final class HomeViewModel: ObservableObject {
             //animatedLoadingViewModel.animate.value = true
         }
         do {
-            let school = try await schoolService.fetchSchoolList()
+            let schools = try await schoolService.fetchSchoolList().map({ school in
+                return HomeViewCellViewModel(data: school)
+            })
+
         } catch {
             await MainActor.run {
                 schools = schoolService.fetchSchoolListFromJSON().map { school in
                     return HomeViewCellViewModel(data: school)
+                }
+                schoolsScore = schoolService.fetchSATScoreFromJSON().map { score in
+                    return SchoolDetaislScoreModel(data: score)
                 }
             }
         }

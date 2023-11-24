@@ -14,7 +14,7 @@ final class SchoolDetailViewCoordinator: SwiftUIEnqueueCoordinator {
     
     weak var rootHostingController: UIHostingController<SchoolDetailView>?
     
-    func instantiateView() -> SchoolDetailView {
+    func instantiateView(school: HomeViewCellViewModel) -> SchoolDetailView {
         let viewModel = SchoolDetailViewModel(coordinator: self)
         let rootView = SchoolDetailView(viewModel: viewModel)
         return rootView
