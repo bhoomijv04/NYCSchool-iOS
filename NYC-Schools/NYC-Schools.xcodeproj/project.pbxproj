@@ -34,6 +34,7 @@
 		749017D82B0A8459003968BC /* schoolsList.json in Resources */ = {isa = PBXBuildFile; fileRef = 749017D62B0A8459003968BC /* schoolsList.json */; };
 		749017D92B0A8459003968BC /* scoresData.json in Resources */ = {isa = PBXBuildFile; fileRef = 749017D72B0A8459003968BC /* scoresData.json */; };
 		74BAB1662B0A930F009C676E /* HomeViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74BAB1652B0A930F009C676E /* HomeViewCellViewModel.swift */; };
+		74EB80BC2B127A1A00FF8A96 /* CommomUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74EB80BB2B127A1A00FF8A96 /* CommomUtilities.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,6 +85,7 @@
 		749017D62B0A8459003968BC /* schoolsList.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = schoolsList.json; sourceTree = "<group>"; };
 		749017D72B0A8459003968BC /* scoresData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = scoresData.json; sourceTree = "<group>"; };
 		74BAB1652B0A930F009C676E /* HomeViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewCellViewModel.swift; sourceTree = "<group>"; };
+		74EB80BB2B127A1A00FF8A96 /* CommomUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommomUtilities.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -203,6 +205,7 @@
 				749017C42B0A52DE003968BC /* HomeViewCoordinator.swift */,
 				749017C62B0A541C003968BC /* HomeView.swift */,
 				74BAB1652B0A930F009C676E /* HomeViewCellViewModel.swift */,
+				74EB80BB2B127A1A00FF8A96 /* CommomUtilities.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -392,6 +395,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				74EB80BC2B127A1A00FF8A96 /* CommomUtilities.swift in Sources */,
 				749017C52B0A52DE003968BC /* HomeViewCoordinator.swift in Sources */,
 				74856B8A2B11009C000CD4BB /* SchoolDetaislScoreModel.swift in Sources */,
 				749017D22B0A5EE5003968BC /* Localisation.swift in Sources */,
