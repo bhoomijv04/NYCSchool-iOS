@@ -20,7 +20,7 @@ public struct NYCSchool: Decodable {
     public let phone_number: String?
     public let school_email: String?
     public let website: String?
-    public let total_students: Int?
+    public let total_students: String?
     // rate
     public let graduation_rate: Double?
     public let attendance_rate: Double?
@@ -29,9 +29,10 @@ public struct NYCSchool: Decodable {
     public let longitude: Double?
     public let borough: String?
     public var location: String?
+    public var extracurricular_activities: String?
     
     
-    public init(dbn: String, name: String, overview: String?, phoneNumber: String?, email: String?, website: String?, totalStudents: Int?, graduationRate: Double?, attendanceRate: Double?, latitude: Double?, longitude: Double?, borough: String?, location: String?) {
+    public init(dbn: String, name: String, overview: String?, phoneNumber: String?, email: String?, website: String?, totalStudents: String?, graduationRate: Double?, attendanceRate: Double?, latitude: Double?, longitude: Double?, borough: String?, location: String?, extracurricular_activities: String?) {
         self.dbn = dbn
         self.school_name = name
         self.overview_paragraph = overview
@@ -45,10 +46,11 @@ public struct NYCSchool: Decodable {
         self.longitude = longitude
         self.borough = borough
         self.location = location
+        self.extracurricular_activities = extracurricular_activities
     }
     
     enum CodingKeys: String, CodingKey {
-        case dbn, phone_number, website, total_students, graduation_rate, attendance_rate, latitude, longitude, borough, school_name, overview_paragraph, school_email, location
+        case dbn, phone_number, website, total_students, graduation_rate, attendance_rate, latitude, longitude, borough, school_name, overview_paragraph, school_email, location, extracurricular_activities
     }
     
     public init(from decoder: Decoder) throws {
@@ -69,7 +71,7 @@ public struct NYCSchool: Decodable {
             website = nil
         }
         
-        total_students = Int(try values.decode(String.self, forKey: .total_students))
+        total_students = try values.decode(String.self, forKey: .total_students)
         graduation_rate = Double((try? values.decode(String.self, forKey: .graduation_rate)) ?? "")
         attendance_rate = Double((try? values.decode(String.self, forKey: .attendance_rate)) ?? "")
         latitude = Double((try? values.decode(String.self, forKey: .latitude)) ?? "")
@@ -79,6 +81,7 @@ public struct NYCSchool: Decodable {
         if let value = location?.components(separatedBy: "(").first {
             location = value
         }
+        extracurricular_activities =  try? values.decode(String.self, forKey: .extracurricular_activities)
         
     }
 }

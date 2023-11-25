@@ -11,11 +11,11 @@ typealias NYCSchoolScoreResponse = [NYCSchoolScore]
 
 public struct NYCSchoolScore {
     let dbn: String
-    let numOfSatTestTakers: Int?
+    let numOfSatTestTakers: String?
     
-    let satCriticalReadingAvgScore: Int?
-    let satMathAvgScore: Int?
-    let satWritingAvgScore: Int?
+    let satCriticalReadingAvgScore: String?
+    let satMathAvgScore: String?
+    let satWritingAvgScore: String?
 }
 
 extension NYCSchoolScore: Decodable {
@@ -26,10 +26,10 @@ extension NYCSchoolScore: Decodable {
     public init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         dbn = try values.decode(String.self, forKey: .dbn)
-        numOfSatTestTakers = Int(try values.decode(String.self, forKey: .numOfSatTestTakers))
+        numOfSatTestTakers = String(try values.decode(String.self, forKey: .numOfSatTestTakers))
         
-        satCriticalReadingAvgScore = Int(try values.decode(String.self, forKey: .satCriticalReadingAvgScore))
-        satMathAvgScore = Int(try values.decode(String.self, forKey: .satMathAvgScore))
-        satWritingAvgScore = Int(try values.decode(String.self, forKey: .satWritingAvgScore))
+        satCriticalReadingAvgScore = try values.decode(String.self, forKey: .satCriticalReadingAvgScore)
+        satMathAvgScore = try values.decode(String.self, forKey: .satMathAvgScore)
+        satWritingAvgScore = try values.decode(String.self, forKey: .satWritingAvgScore)
     }
 }
