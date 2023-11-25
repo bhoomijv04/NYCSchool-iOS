@@ -28,9 +28,10 @@ public struct NYCSchool: Decodable {
     public let latitude: Double?
     public let longitude: Double?
     public let borough: String?
+    public var location: String?
     
     
-    public init(dbn: String, name: String, overview: String?, phoneNumber: String?, email: String?, website: String?, totalStudents: Int?, graduationRate: Double?, attendanceRate: Double?, latitude: Double?, longitude: Double?, borough: String?) {
+    public init(dbn: String, name: String, overview: String?, phoneNumber: String?, email: String?, website: String?, totalStudents: Int?, graduationRate: Double?, attendanceRate: Double?, latitude: Double?, longitude: Double?, borough: String?, location: String?) {
         self.dbn = dbn
         self.school_name = name
         self.overview_paragraph = overview
@@ -43,10 +44,11 @@ public struct NYCSchool: Decodable {
         self.latitude = latitude
         self.longitude = longitude
         self.borough = borough
+        self.location = location
     }
     
     enum CodingKeys: String, CodingKey {
-        case dbn, phone_number, website, total_students, graduation_rate, attendance_rate, latitude, longitude, borough,school_name,overview_paragraph,school_email
+        case dbn, phone_number, website, total_students, graduation_rate, attendance_rate, latitude, longitude, borough, school_name, overview_paragraph, school_email, location
     }
     
     public init(from decoder: Decoder) throws {
@@ -73,5 +75,10 @@ public struct NYCSchool: Decodable {
         latitude = Double((try? values.decode(String.self, forKey: .latitude)) ?? "")
         longitude = Double((try? values.decode(String.self, forKey: .longitude)) ?? "")
         borough = try? values.decode(String.self, forKey: .borough)
+        location = try? values.decode(String.self, forKey: .location)
+        if let value = location?.components(separatedBy: "(").first {
+            location = value
+        }
+        
     }
 }

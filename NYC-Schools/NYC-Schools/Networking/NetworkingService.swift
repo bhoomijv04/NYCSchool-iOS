@@ -7,14 +7,6 @@
 
 import Foundation
 
-/*
- 
- NYC Open Data
- Directory: 2017 DOE High School Directory
- https://data.cityofnewyork.us/Education/2017-DOE-High-School-Directory/s3k6-pzi2
- 
- */
-
 // MARK: Network task Protocol
 public protocol NetworkingServiceProtocol {
     func makeRequest<T: Decodable>(session: URLSession, _ absoluteURL: String) async throws -> T

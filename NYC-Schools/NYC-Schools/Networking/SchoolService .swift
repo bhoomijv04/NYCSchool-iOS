@@ -7,6 +7,18 @@
 
 import Foundation
 
+/*
+ 
+ NYC Open Data
+ 
+ Directory: 2017 DOE High School Directory
+ https://data.cityofnewyork.us/Education/2017-DOE-High-School-Directory/s3k6-pzi2
+ 
+ Directory: 2012 SAT Results
+ https://data.cityofnewyork.us/Education/2012-SAT-Results/f9bf-2cp4
+ 
+ */
+
 // MARK: Service class for School API
 public protocol SchoolServiceProtocol {
     func fetchSchoolList() async throws -> [NYCSchool]
@@ -29,7 +41,7 @@ extension SchoolService : SchoolServiceProtocol {
     }
     
     public func fetchSchoolScore(idx: String) async throws -> [NYCSchoolScore] {
-        let path = "https://data.cityofnewyork.us/Education/DOE-High-School-Dirctory-2017/s3k6-pzi2"
+        let path = "https://data.cityofnewyork.us/resource/f9bf-2cp4.json"
         let result: [NYCSchoolScore] = try await service.makeRequest(path)
         return result
     }

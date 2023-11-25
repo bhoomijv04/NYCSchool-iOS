@@ -18,9 +18,10 @@ public final class HomeViewModel: ObservableObject {
         case success
         case error(_ message: String)
     }
+    
+    @Published var searchString = ""
     @Published public private(set) var state: State = .noContent
     @Published private(set) var schools: [HomeViewCellViewModel] = [HomeViewCellViewModel]()
-    @Published private(set) var schoolsScore: [SchoolDetaislScoreModel] = [SchoolDetaislScoreModel]()
     
     public let coordinator: any SwiftUIEnqueueCoordinator<HomeViewModel.RouteType>
     private let schoolService: SchoolServiceProtocol = SchoolService.shared
@@ -34,19 +35,26 @@ public final class HomeViewModel: ObservableObject {
             //animatedLoadingViewModel.animate.value = true
         }
         do {
-            let schools = try await schoolService.fetchSchoolList().map({ school in
-                return HomeViewCellViewModel(data: school)
-            })
-
+            _ = try await schoolService.fetchSchoolList()
+            
         } catch {
             await MainActor.run {
+                let  scores = schoolService.fetchSATScoreFromJSON()
                 schools = schoolService.fetchSchoolListFromJSON().map { school in
-                    return HomeViewCellViewModel(data: school)
-                }
-                schoolsScore = schoolService.fetchSATScoreFromJSON().map { score in
-                    return SchoolDetaislScoreModel(data: score)
+                    let score = scores.filter { scoreValue in
+                        return school.dbn == scoreValue.dbn
+                    }
+                    return HomeViewCellViewModel(data: school, score: score.first)
                 }
             }
+        }
+    }
+
+    func search() -> [HomeViewCellViewModel] {
+        if !searchString.isEmpty {
+            return schools.filter { $0.school.school_name.lowercased().contains(searchString.lowercased().trimmingCharacters(in: .whitespacesAndNewlines)) }
+        } else {
+            return schools
         }
     }
 }

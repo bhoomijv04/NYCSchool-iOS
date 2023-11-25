@@ -18,7 +18,7 @@ public struct HomeView: View {
     public var body: some View {
         NavigationView {
             List {
-                ForEach(viewModel.schools, id: \.id) { item in
+                ForEach(viewModel.search(), id: \.id) { item in
                     NavigationLink(destination: {
                         viewModel.coordinator.enqueueRoute(with: .goToDetailsView(viewModel: item), animated: true, completion: nil)
                     }){
@@ -27,11 +27,20 @@ public struct HomeView: View {
                 }
             }
             .navigationBarTitleDisplayMode(.inline)
-            .navigationTitle("home.title".localized)
             .listStyle(.plain)
             .task {
                 await viewModel.getNYCSchoolList()
             }
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    VStack {
+                        Spacer()
+                        Text("home.title").font(.headline)
+                        .padding([.bottom],20)
+                    }
+                }
+            }
+            .searchable(text: $viewModel.searchString)
         }
         
     }
@@ -56,9 +65,63 @@ struct HomeViewCell: View {
             Text(viewModel.school.school_name.capitalized)
                 .foregroundColor(.primary)
                 .font(.subheadline)
-            HStack(alignment: .center, spacing: 3) {
-                Label(viewModel.school.dbn, systemImage: "phone")
+                .fontWeight(.semibold)
+                .accessibilityAddTraits(.isHeader)
+                .padding([.top], 5)
+            Spacer(minLength: 0.1)
+            VStack(alignment: .leading, spacing: 3) {
+                Text(viewModel.school.overview_paragraph ?? " ")
+                    .font(.subheadline)
+                    .foregroundColor(.secondary)
+                    .lineLimit(2)
+                    .truncationMode(.tail)
+                Text(viewModel.school.borough ?? " ")
+                    .font(.footnote)
+                    .foregroundColor(.secondary)
+                HStack(alignment: .center,spacing: 5) {
+                    Button {
+                        viewModel.openMap(school: viewModel.school)
+                    } label: {
+                        Image(systemName: "mappin").renderingMode(.template)
+                    }
+                    .frame(width: 50, height: 50)
+                    .buttonStyle(.bordered)
+                    .tint(.blue)
+                    Button {
+                        viewModel.callPhone(phone: viewModel.school.phone_number)
+                    } label: {
+                        Image(systemName: "phone").renderingMode(.template)
+                    }
+                    .frame(width: 50, height: 50)
+                    .buttonStyle(.bordered)
+                    .tint(.blue)
+                    Button {
+                        
+                    } label: {
+                        Image(systemName: "paperplane").renderingMode(.template)
+                    }
+                    .frame(width: 50, height: 50)
+                    .buttonStyle(.bordered)
+                    .tint(.blue)
+                    Button {
+                        viewModel.openURL(urlString: viewModel.school.website)
+                    } label: {
+                        Image(systemName: "link").renderingMode(.template)
+                    }
+                    .frame(width: 50, height: 50)
+                    .buttonStyle(.bordered)
+                    .tint(.blue)
+                }
             }
+            .background(.clear)
+            Spacer()
         }
     }
+}
+
+
+struct Theme  {
+    static let customBackground: Color = Color("Background")
+    static let customPrimary : Color = Color("Primary")
+    static let themeColor: Color = .purple
 }
