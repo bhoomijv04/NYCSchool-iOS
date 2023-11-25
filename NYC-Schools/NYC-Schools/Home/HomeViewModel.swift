@@ -25,6 +25,7 @@ public final class HomeViewModel: ObservableObject {
     
     public let coordinator: any SwiftUIEnqueueCoordinator<HomeViewModel.RouteType>
     private let schoolService: SchoolServiceProtocol = SchoolService.shared
+    private let commonVC: CommanUtilitiesProtocol = CommanUtilities.shared
     
     public init(coordinator: any SwiftUIEnqueueCoordinator<HomeViewModel.RouteType>) {
         self.coordinator = coordinator
@@ -44,10 +45,29 @@ public final class HomeViewModel: ObservableObject {
                     let score = scores.filter { scoreValue in
                         return school.dbn == scoreValue.dbn
                     }
-                    return HomeViewCellViewModel(data: school, score: score.first)
+                    return schoolViewModel(school: school, score: score.first)
                 }
             }
         }
+    }
+    
+    func schoolViewModel(school: NYCSchool, score: NYCSchoolScore?) -> HomeViewCellViewModel {
+        return HomeViewCellViewModel(data: school, score: score, openURL: { [weak self] url in
+            if let urlString = url {
+                self?.commonVC.openURL(urlString: urlString)
+            }
+            
+        }, callPhone: { [weak self] number in
+            if let phoneNumber = number {
+                self?.commonVC.callPhone(phone: phoneNumber)
+            }
+            
+        }, openMap: { [weak self] school in
+            self?.commonVC.openMap(school: school)
+            
+        }, openEmail: { [weak self] email in
+            // self?.commonVC.sendEmail(root: self?.coordinator.rootHostingController?.navigationController)
+        })
     }
 
     func search() -> [HomeViewCellViewModel] {

@@ -15,64 +15,35 @@ public final class HomeViewCellViewModel: ObservableObject {
     public var school: NYCSchool
     public var score: NYCSchoolScore?
     public var id: UUID
+    public var openURL: ((String)?) -> Void
+    public var callPhone: ((String)?) -> Void
+    public var openMap: ((NYCSchool)) -> Void
+    public var openEmail: ((String)?) -> Void
     
-    public init(data: NYCSchool, score: NYCSchoolScore?, id: UUID = UUID()) {
+    public init(data: NYCSchool, score: NYCSchoolScore?, id: UUID = UUID(), openURL:@escaping ((String)?) -> Void, callPhone:@escaping ((String)?) -> Void, openMap: @escaping ((NYCSchool)) -> Void, openEmail: @escaping ((String)?) -> Void) {
         self.school = data
         self.id = id
         self.score = score
+        self.openURL = openURL
+        self.callPhone = callPhone
+        self.openMap = openMap
+        self.openEmail = openEmail
     }
 
     public func openURL(urlString: String?) {
-        if let url = URL(string: urlString ?? "") {
-            if UIApplication.shared.canOpenURL(url) {
-                UIApplication.shared.open(url)
-            }
-        }
+        openURL(urlString)
     }
     
     public func callPhone(phone: String?) {
-        let phoneNumber = "telprompt://".appending(phone ?? "")
-        openURL(urlString: phoneNumber)
+        callPhone(phone)
     }
     
     public func openMap(school: NYCSchool) {
-        
-        if let lat = school.latitude, let long = school.longitude {
-            let latitude: CLLocationDegrees = lat
-            let longitude: CLLocationDegrees = long
-            let regionDistance:CLLocationDistance = 10000
-            let coordinates = CLLocationCoordinate2DMake(latitude, longitude)
-            let regionSpan = MKCoordinateRegion(center: coordinates, latitudinalMeters: regionDistance, longitudinalMeters: regionDistance)
-            let options = [
-                MKLaunchOptionsMapCenterKey: NSValue(mkCoordinate: regionSpan.center),
-                MKLaunchOptionsMapSpanKey: NSValue(mkCoordinateSpan: regionSpan.span)
-            ]
-            let placemark = MKPlacemark(coordinate: coordinates, addressDictionary: nil)
-            let mapItem = MKMapItem(placemark: placemark)
-            mapItem.name = school.school_name.capitalized
-            mapItem.openInMaps(launchOptions: options)
-        }
+        self.openMap(school)
     }
     
-    func sendEmail() {
-        if MFMailComposeViewController.canSendMail() {
-            let mail = MFMailComposeViewController()
-            // mail.mailComposeDelegate = self
-            mail.setToRecipients(["you@yoursite.com"])
-            mail.setMessageBody("<p>You're so awesome!</p>", isHTML: true)
-
-           // present(mail, animated: true)
-        } else {
-            // show failure alert
-        }
+    func sendEmail(addresss: String?) {
+        self.openEmail(addresss)
     }
 }
-
-/*
-extension HomeViewCellViewModel: MFMessageComposeViewControllerDelegate {
-    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
-        controller.dismiss(animated: true)
-    }
-}
- */
 
