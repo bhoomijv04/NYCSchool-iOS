@@ -35,45 +35,11 @@ public struct SchoolDetailView: View {
                         .fontWeight(.semibold)
                         .padding([.top], 5)
                 }
-                
-               
                 satScoreContainerView
                 eligibilityView
-                
-                
-                if viewModel.schoolModel.school.acedemicOpportunities.count > 0 {
-                    opportunityView
-                }
-                
-                if (viewModel.schoolModel.school.extracurricular_activities != nil) {
-                    extraActitivyView
-                }
-                
-                VStack(alignment: .leading, spacing: 5) {
-                    Text("Contact us:")
-                        .font(.subheadline)
-                        .fontWeight(.semibold)
-                        .padding([.top], 5)
-                    Text(viewModel.schoolModel.school.location ?? "")
-                        .multilineTextAlignment(.leading)
-                        .font(.subheadline)
-                        .foregroundColor(.secondary)
-                    Text(viewModel.schoolModel.school.borough ?? "")
-                        .font(.subheadline)
-                        .foregroundColor(.secondary)
-                    Text(viewModel.schoolModel.school.phone_number ?? "")
-                        .font(.subheadline)
-                        .foregroundColor(.secondary)
-                    Text(viewModel.schoolModel.school.phone_number ?? "")
-                        .font(.subheadline)
-                        .foregroundColor(.secondary)
-                    Text(viewModel.schoolModel.school.school_email ?? "")
-                        .font(.subheadline)
-                        .foregroundColor(.secondary)
-                    Text(viewModel.schoolModel.school.website ?? "")
-                        .font(.subheadline)
-                        .foregroundColor(.secondary)
-                }
+                opportunityView
+                extraActitivyView
+                contactUSView
             }
             .padding()
         }
@@ -209,9 +175,44 @@ public struct SchoolDetailView: View {
                     .font(.subheadline)
                     .foregroundColor(.secondary)
                     .padding([.top], 5)
-                SATscoreView
             } else {
                 SATscoreView
+            }
+        }
+    }
+    
+    private var contactUSView: some View {
+        VStack(alignment: .leading, spacing: 5) {
+            Text("Contact us:")
+                .font(.subheadline)
+                .fontWeight(.semibold)
+                .padding([.top], 5)
+            Text(viewModel.schoolModel.school.location ?? "")
+                .multilineTextAlignment(.leading)
+                .font(.subheadline)
+                .foregroundColor(.secondary)
+            Text(viewModel.schoolModel.school.borough ?? "")
+                .font(.subheadline)
+                .foregroundColor(.secondary)
+            if let number = viewModel.schoolModel.school.phone_number {
+                Text("Phone: \(number)")
+                    .font(.subheadline)
+                    .foregroundColor(.secondary)
+            }
+            if let Fax = viewModel.schoolModel.school.fax_number {
+                Text("Fax: \(Fax)")
+                    .font(.subheadline)
+                    .foregroundColor(.secondary)
+            }
+            if let email = viewModel.schoolModel.school.school_email {
+                Text(email)
+                    .font(.subheadline)
+                    .foregroundColor(.secondary)
+            }
+            if let website = viewModel.schoolModel.school.website {
+                Text(website)
+                    .font(.subheadline)
+                    .foregroundColor(.secondary)
             }
         }
     }

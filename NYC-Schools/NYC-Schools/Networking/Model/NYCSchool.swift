@@ -21,6 +21,7 @@ public struct NYCSchool: Decodable {
     public let school_email: String?
     public let website: String?
     public let total_students: String?
+    public let fax_number: String?
     // rate
     public let graduation_rate: Double?
     public let attendance_rate: Double?
@@ -34,11 +35,12 @@ public struct NYCSchool: Decodable {
     public var acedemicRequirnment: [String] = []
     
     
-    public init(dbn: String, name: String, overview: String?, phoneNumber: String?, email: String?, website: String?, totalStudents: String?, graduationRate: Double?, attendanceRate: Double?, latitude: Double?, longitude: Double?, borough: String?, location: String?, extracurricular_activities: String?, acedemicOpportunities: [String], acedemicRequirnment: [String]) {
+    public init(dbn: String, name: String, overview: String?, phoneNumber: String?, fax_number: String?, email: String?, website: String?, totalStudents: String?, graduationRate: Double?, attendanceRate: Double?, latitude: Double?, longitude: Double?, borough: String?, location: String?, extracurricular_activities: String?, acedemicOpportunities: [String], acedemicRequirnment: [String]) {
         self.dbn = dbn
         self.school_name = name
         self.overview_paragraph = overview
         self.phone_number = phoneNumber
+        self.fax_number = fax_number
         self.school_email = email
         self.website = website
         self.total_students = totalStudents
@@ -54,7 +56,7 @@ public struct NYCSchool: Decodable {
     }
     
     enum CodingKeys: String, CodingKey {
-        case dbn, phone_number, website, total_students, graduation_rate, attendance_rate, latitude, longitude, borough, school_name, overview_paragraph, school_email, location, extracurricular_activities, academicopportunities1, academicopportunities2, academicopportunities3,  academicopportunities4,  academicopportunities5, requirement1_1, requirement2_1, requirement3_1, requirement4_1, requirement5_1, eligibility1
+        case dbn, phone_number, website, total_students, graduation_rate, attendance_rate, latitude, longitude, borough, school_name, overview_paragraph, school_email, location, extracurricular_activities, academicopportunities1, academicopportunities2, academicopportunities3,  academicopportunities4,  academicopportunities5, requirement1_1, requirement2_1, requirement3_1, requirement4_1, requirement5_1, eligibility1, fax_number
     }
     
     public init(from decoder: Decoder) throws {
@@ -66,6 +68,7 @@ public struct NYCSchool: Decodable {
         overview_paragraph = (try? values.decode(String.self, forKey: .overview_paragraph))?.replacingOccurrences(of: "Â", with: "")
         
         phone_number = try? values.decode(String.self, forKey: .phone_number)
+        fax_number = try? values.decode(String.self, forKey: .fax_number)
         school_email = try? values.decode(String.self, forKey: .school_email)
         
         let rawWebsite = try? values.decode(String.self, forKey: .website)
