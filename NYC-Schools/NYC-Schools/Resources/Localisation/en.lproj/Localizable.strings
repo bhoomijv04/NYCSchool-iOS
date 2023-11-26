@@ -7,3 +7,20 @@
 */
 
 "home.title" = "NYC Schools";
+"generic.error.title" = "Error !!";
+"generic.error.description" = "Somehting went wrong \n Please try again";
+"generic.retry.title" = "Try Again";
+"generic.noData.available" = "No Data Available";
+"school.contactus" = "Contact us";
+"school.phone" = "Phone";
+"school.fax" = "Fax";
+"school.acedemic.opportunities" = "Academic Opportunities";
+"school.extra.activities" = "Extracurricular Activities";
+"school.eligibility.criteria" = "Eligibility Criteria";
+
+//score
+"score.maths" = "Maths";
+"score.reading" = "Reading";
+"score.writing" = "Writing";
+"score.attended.student" = "Test Takers";
+"score.sat.score" = "SAT Scores";

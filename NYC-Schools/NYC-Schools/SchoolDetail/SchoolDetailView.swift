@@ -48,60 +48,46 @@ public struct SchoolDetailView: View {
     
     private var SATscoreView: some View {
         HStack(alignment: .center,spacing: 5) {
-            VStack(alignment: .center, spacing: Sizes.scoreVSpacing) {
-                Text("125")
-                    .frame(width: Sizes.scoreSize, height: Sizes.scoreSize, alignment: .center)
-                    .padding()
-                    .overlay(
-                        Circle()
-                            .stroke(Color.blue, lineWidth: Sizes.scorelineWidth)
-                            .padding(6)
-                    )
-                Text ("Writing")
-                    .font(.footnote)
+            if let writing = viewModel.schoolModel.score?.sat_writing_avg_score {
+                makeScoreView(title: "score.writing".localized, value: writing)
             }
-            VStack(alignment: .center, spacing: Sizes.scoreVSpacing) {
-                Text("125")
-                    .frame(width: Sizes.scoreSize, height: Sizes.scoreSize, alignment: .center)
-                    .padding()
-                    .overlay(
-                        Circle()
-                            .stroke(Color.blue, lineWidth: Sizes.scorelineWidth)
-                            .padding(6)
-                    )
-                Text ("Reading")
-                    .font(.footnote)
+            if let reading = viewModel.schoolModel.score?.sat_critical_reading_avg_score {
+                makeScoreView(title: "score.reading".localized, value: reading)
             }
-            VStack(alignment: .center, spacing: Sizes.scoreVSpacing) {
-                Text("125")
-                    .frame(width: Sizes.scoreSize, height:Sizes.scoreSize, alignment: .center)
-                    .padding()
-                    .overlay(
-                        Circle()
-                            .stroke(Color.blue, lineWidth: Sizes.scorelineWidth)
-                            .padding(6)
-                    )
-                Text ("Math")
-                    .font(.footnote)
+            if let maths = viewModel.schoolModel.score?.sat_math_avg_score {
+                makeScoreView(title: "score.maths".localized, value: maths)
             }
-            VStack(alignment: .center, spacing: Sizes.scoreVSpacing) {
-                Text("125")
-                    .frame(width: Sizes.scoreSize, height: Sizes.scoreSize, alignment: .center)
-                    .padding()
-                    .overlay(
-                        Circle()
-                            .stroke(Color.blue, lineWidth: Sizes.scorelineWidth)
-                            .padding(6)
-                    )
-                Text ("No of Students")
-                    .font(.footnote)
+            
+            
+            if let total = viewModel.getTotalScore() {
+                makeScoreView(title: "Total Score".localized, value: "\(total)")
             }
+            
+            if let attended = viewModel.schoolModel.score?.num_of_sat_test_takers{
+                makeScoreView(title: "score.attended.student".localized, value: attended)
+            }
+            
+        }.padding([.top], 5)
+    }
+    
+    @ViewBuilder func makeScoreView(title: String, value: String) -> some View {
+        VStack(alignment: .center, spacing: Sizes.scoreVSpacing) {
+            Text(value)
+                .frame(width: Sizes.scoreSize, height: Sizes.scoreSize, alignment: .center)
+                .padding()
+                .overlay(
+                    Circle()
+                        .stroke(Color.blue, lineWidth: Sizes.scorelineWidth)
+                        .padding(6)
+                )
+            Text (title)
+                .font(.footnote)
         }
     }
     
     private var opportunityView: some View {
         VStack(alignment: .leading, spacing: 5) {
-            Text("Academic Opportunities:")
+            Text("\("school.acedemic.opportunities".localized):")
                 .font(.subheadline)
                 .fontWeight(.semibold)
                 .padding([.top], 5)
@@ -116,7 +102,7 @@ public struct SchoolDetailView: View {
                     .accessibilityLabel("Bullet Points")
                 }
             } else {
-                Text("No Data Available.")
+                Text("generic.noData.available".localized)
                     .font(.subheadline)
                     .foregroundColor(.secondary)
                     .padding([.top], 5)
@@ -127,7 +113,7 @@ public struct SchoolDetailView: View {
     
     private var extraActitivyView: some View {
         VStack(alignment: .leading, spacing: 5) {
-            Text("Extracurricular Activities:")
+            Text("\("school.extra.activities".localized):")
                 .font(.subheadline)
                 .fontWeight(.semibold)
                 .padding([.top], 5)
@@ -140,7 +126,7 @@ public struct SchoolDetailView: View {
     
     private var eligibilityView: some View {
         VStack(alignment: .leading, spacing: 5) {
-            Text("Eligibility Criteria:")
+            Text("\("school.eligibility.criteria".localized):")
                 .font(.subheadline)
                 .fontWeight(.semibold)
                 .padding([.top], 5)
@@ -155,7 +141,7 @@ public struct SchoolDetailView: View {
                     .accessibilityLabel("Bullet Points")
                 }
             } else {
-                Text("No Data Available.")
+                Text("generic.noData.available".localized)
                     .font(.subheadline)
                     .foregroundColor(.secondary)
                     .padding([.top], 5)
@@ -166,12 +152,12 @@ public struct SchoolDetailView: View {
     
     private var satScoreContainerView: some View {
         VStack(alignment: .leading, spacing: 5) {
-            Text("SAT Result:")
+            Text("\("score.sat.score".localized):")
                 .font(.subheadline)
                 .fontWeight(.semibold)
                 .padding([.top], 5)
             if (viewModel.schoolModel.score == nil) {
-                Text("No Data Available.")
+                Text("generic.noData.available".localized)
                     .font(.subheadline)
                     .foregroundColor(.secondary)
                     .padding([.top], 5)
@@ -183,7 +169,7 @@ public struct SchoolDetailView: View {
     
     private var contactUSView: some View {
         VStack(alignment: .leading, spacing: 5) {
-            Text("Contact us:")
+            Text("\("school.contactus".localized):")
                 .font(.subheadline)
                 .fontWeight(.semibold)
                 .padding([.top], 5)
@@ -195,12 +181,12 @@ public struct SchoolDetailView: View {
                 .font(.subheadline)
                 .foregroundColor(.secondary)
             if let number = viewModel.schoolModel.school.phone_number {
-                Text("Phone: \(number)")
+                Text("\("school.phone".localized): \(number)")
                     .font(.subheadline)
                     .foregroundColor(.secondary)
             }
             if let Fax = viewModel.schoolModel.school.fax_number {
-                Text("Fax: \(Fax)")
+                Text("\("school.fax".localized): \(Fax)")
                     .font(.subheadline)
                     .foregroundColor(.secondary)
             }
@@ -220,12 +206,6 @@ public struct SchoolDetailView: View {
 
 struct Sizes {
     static let scoreVSpacing: Double = 1.0
-    static let scoreSize: Double = 50
+    static let scoreSize: Double = 40
     static let scorelineWidth: Double = 4
 }
-/*
- struct SchoolDetailView_Previews: PreviewProvider {
-     static var previews: some View {
-         SchoolDetailView(viewModel: SchoolDetailViewModel(coordinator: SchoolDetailViewCoordinator(), schoolModel: <#HomeViewCellViewModel#>))
-     }
- }*/

@@ -32,18 +32,21 @@ public final class SchoolService: NSObject {
     let service = NetworkingService.shared
 }
 
+struct SchoolServiceURL {
+    static let schoolList = "https://data.cityofnewyork.us/resource/s3k6-pzi2"
+    static let schoolScore = "https://data.cityofnewyork.us/resource/f9bf-2cp4"
+}
+
 // MARK: Load Data from API
 extension SchoolService : SchoolServiceProtocol {
 
     public func fetchSchoolList() async throws -> [NYCSchool] {
-        let path = "https://data.cityofnewyork.us/resource/s3k6-pzi2"
-        let result: NYCSchoolDirectoryResponse = try await service.makeRequest(path)
+        let result: NYCSchoolDirectoryResponse = try await service.makeRequest(SchoolServiceURL.schoolList)
         return result
     }
     
     public func fetchSchoolScore() async throws -> [NYCSchoolScore] {
-        let path = "https://data.cityofnewyork.us/resource/f9bf-2cp4.json"
-        let result: NYCSchoolScoreResponse = try await service.makeRequest(path)
+        let result: NYCSchoolScoreResponse = try await service.makeRequest(SchoolServiceURL.schoolScore)
         return result
     }
 }
@@ -70,6 +73,7 @@ extension SchoolService {
                 let data = try Data(contentsOf: url)
                 let decoder = JSONDecoder()
                 let jsonData = try decoder.decode(NYCSchoolScoreResponse.self, from: data)
+
                 return jsonData
             } catch {
                 print("error:\(error)")

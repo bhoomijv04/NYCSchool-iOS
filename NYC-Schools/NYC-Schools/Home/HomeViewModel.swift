@@ -13,14 +13,14 @@ public final class HomeViewModel: ObservableObject {
         case goToDetailsView(viewModel: HomeViewCellViewModel)
     }
     
-    public enum State: Equatable {
+    public enum HomeViewState: Equatable {
         case noContent
         case success
-        case error(_ message: String)
+        case error
     }
     
     @Published var searchString = ""
-    @Published public private(set) var state: State = .noContent
+    @Published public private(set) var state: HomeViewState = .noContent
     @Published private(set) var schools: [HomeViewCellViewModel] = [HomeViewCellViewModel]()
     
     public let coordinator: any SwiftUIEnqueueCoordinator<HomeViewModel.RouteType>
@@ -33,7 +33,7 @@ public final class HomeViewModel: ObservableObject {
     
     public func getNYCSchoolList() async {
         await MainActor.run {
-            //animatedLoadingViewModel.animate.value = true
+            state = .noContent
         }
         do {
             let scores = try await schoolService.fetchSchoolScore()
@@ -44,22 +44,27 @@ public final class HomeViewModel: ObservableObject {
                 return schoolViewModel(school: school, score: score.first)
             }
             await MainActor.run {
-                state = .success
                 self.schools = school
+                state = .success
+                
             }
         } catch {
-                let  scores = schoolService.fetchSATScoreFromJSON()
-                let schools = schoolService.fetchSchoolListFromJSON().map { school in
-                    let score = scores.filter { scoreValue in
-                        return school.dbn == scoreValue.dbn
-                    }
-                    return schoolViewModel(school: school, score: score.first)
-                    
-                }
-            await MainActor.run {
-                self.schools = schools
-                state = .success
-            }
+             // In case of error it load data from JSON
+             let  scores = schoolService.fetchSATScoreFromJSON()
+             let schools = schoolService.fetchSchoolListFromJSON().map { school in
+             let score = scores.filter { scoreValue in
+             return school.dbn == scoreValue.dbn
+             }
+             return schoolViewModel(school: school, score: score.first)
+             
+             }
+             await MainActor.run {
+             self.schools = schools
+             state = .success
+             }
+           /* await MainActor.run {
+                state = .error
+            }*/
         }
     }
     

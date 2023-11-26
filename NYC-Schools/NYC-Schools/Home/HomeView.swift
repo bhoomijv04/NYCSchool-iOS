@@ -19,22 +19,29 @@ public struct HomeView: View {
         NavigationView {
             switch viewModel.state {
             case .success:
-                NYCSchoolView
+                NYCSchoolList
             case .noContent:
-                ActivityIndicator(isAnimating: true) {
+                NYCLoadingView(isAnimating: true) {
                     $0.hidesWhenStopped = false
                 }
-            case .error(_):
-                errorView
+            case .error:
+                NYCErrorView(title:"generic.error.title".localized,
+                             subTitle: "generic.error.description".localized,
+                             retryBtnText: "generic.retry.title".localized) {
+                    Task {
+                        await viewModel.getNYCSchoolList()
+                    }
+                }
+                .navigationBarTitleDisplayMode(.inline)
+                .navigationTitle("home.title".localized)
             }
         }
-        .navigationTitle("home.title".localized)
         .task {
             await viewModel.getNYCSchoolList()
         }
     }
     
-    private var NYCSchoolView: some View {
+    private var NYCSchoolList: some View {
         List {
             ForEach(viewModel.search(), id: \.id) { item in
                 NavigationLink(destination: {
@@ -48,23 +55,7 @@ public struct HomeView: View {
         .navigationTitle("home.title".localized)
         .navigationBarTitleDisplayMode(.inline)
     }
-    
-    private var errorView: some View {
-        VStack {
-            Image("error-icon")
-                .frame(width: 50.0, height: 50.0)
-            Text("Error View")
-            .navigationBarTitleDisplayMode(.inline)
-            .navigationTitle("home.title".localized)
-        }
-    }
 }
-
- struct HomeView_Previews: PreviewProvider {
-     static var previews: some View {
-         HomeView(viewModel: HomeViewModel(coordinator: HomeViewCoordinator()))
-     }
- }
 
 struct HomeViewCell: View {
     
@@ -112,7 +103,7 @@ struct HomeViewCell: View {
                     Button {
                         
                     } label: {
-                        Image(systemName: "paperplane").renderingMode(.template)
+                        Image(systemName: "envelope").renderingMode(.template)
                     }
                     .frame(width: 50, height: 50)
                     .buttonStyle(.bordered)
@@ -131,11 +122,4 @@ struct HomeViewCell: View {
             Spacer()
         }
     }
-}
-
-
-struct Theme  {
-    static let customBackground: Color = Color("Background")
-    static let customPrimary : Color = Color("Primary")
-    static let themeColor: Color = .purple
 }

@@ -9,7 +9,7 @@
 import SwiftUI
 import Combine
 
-public struct ActivityIndicator: UIViewRepresentable {
+public struct NYCLoadingView: UIViewRepresentable {
     
     public typealias UIView = UIActivityIndicatorView
     public var isAnimating: Bool
@@ -24,7 +24,7 @@ public struct ActivityIndicator: UIViewRepresentable {
     }
 }
 
-extension View where Self == ActivityIndicator {
+extension View where Self == NYCLoadingView {
     func configure(_ configuration: @escaping (Self.UIView)->Void) -> Self {
         Self.init(isAnimating: self.isAnimating, configuration: configuration)
     }

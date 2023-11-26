@@ -13,8 +13,6 @@ public protocol NetworkingServiceProtocol {
 }
 
 public final class NetworkingService: NSObject {
-    
-    var desc: String = ""
     static let shared = NetworkingService()
 
 }
@@ -41,7 +39,6 @@ extension NetworkingService : NetworkingServiceProtocol {
         }
         
         let jsonDecoder = JSONDecoder()
-        
         do {
             let data = try jsonDecoder.decode(T.self, from: response.0)
             return data
