@@ -36,17 +36,29 @@ public final class HomeViewModel: ObservableObject {
             //animatedLoadingViewModel.animate.value = true
         }
         do {
-            _ = try await schoolService.fetchSchoolList()
-            
-        } catch {
+            let scores = try await schoolService.fetchSchoolScore()
+            let school = try await schoolService.fetchSchoolList().map { school in
+                let score = scores.filter { scoreValue in
+                    return school.dbn == scoreValue.dbn
+                }
+                return schoolViewModel(school: school, score: score.first)
+            }
             await MainActor.run {
+                state = .success
+                self.schools = school
+            }
+        } catch {
                 let  scores = schoolService.fetchSATScoreFromJSON()
-                schools = schoolService.fetchSchoolListFromJSON().map { school in
+                let schools = schoolService.fetchSchoolListFromJSON().map { school in
                     let score = scores.filter { scoreValue in
                         return school.dbn == scoreValue.dbn
                     }
                     return schoolViewModel(school: school, score: score.first)
+                    
                 }
+            await MainActor.run {
+                self.schools = schools
+                state = .success
             }
         }
     }

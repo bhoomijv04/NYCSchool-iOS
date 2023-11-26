@@ -22,6 +22,7 @@ import Foundation
 // MARK: Service class for School API
 public protocol SchoolServiceProtocol {
     func fetchSchoolList() async throws -> [NYCSchool]
+    func fetchSchoolScore() async throws -> [NYCSchoolScore]
     func fetchSchoolListFromJSON() -> [NYCSchool]
     func fetchSATScoreFromJSON() -> [NYCSchoolScore]
 }
@@ -36,13 +37,13 @@ extension SchoolService : SchoolServiceProtocol {
 
     public func fetchSchoolList() async throws -> [NYCSchool] {
         let path = "https://data.cityofnewyork.us/resource/s3k6-pzi2"
-        let result: [NYCSchool] = try await service.makeRequest(path)
+        let result: NYCSchoolDirectoryResponse = try await service.makeRequest(path)
         return result
     }
     
-    public func fetchSchoolScore(idx: String) async throws -> [NYCSchoolScore] {
+    public func fetchSchoolScore() async throws -> [NYCSchoolScore] {
         let path = "https://data.cityofnewyork.us/resource/f9bf-2cp4.json"
-        let result: [NYCSchoolScore] = try await service.makeRequest(path)
+        let result: NYCSchoolScoreResponse = try await service.makeRequest(path)
         return result
     }
 }

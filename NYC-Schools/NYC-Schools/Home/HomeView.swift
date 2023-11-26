@@ -17,32 +17,46 @@ public struct HomeView: View {
     }
     public var body: some View {
         NavigationView {
-            List {
-                ForEach(viewModel.search(), id: \.id) { item in
-                    NavigationLink(destination: {
-                        viewModel.coordinator.enqueueRoute(with: .goToDetailsView(viewModel: item), animated: true, completion: nil)
-                    }){
-                        HomeViewCell(viewModel: item)
-                    }
+            switch viewModel.state {
+            case .success:
+                NYCSchoolView
+            case .noContent:
+                ActivityIndicator(isAnimating: true) {
+                    $0.hidesWhenStopped = false
                 }
+            case .error(_):
+                errorView
             }
-            .navigationBarTitleDisplayMode(.inline)
-            .listStyle(.plain)
-            .task {
-                await viewModel.getNYCSchoolList()
-            }
-            .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    VStack {
-                        Spacer()
-                        Text("home.title").font(.headline)
-                        .padding([.bottom],20)
-                    }
-                }
-            }
-            .searchable(text: $viewModel.searchString)
         }
-        
+        .navigationTitle("home.title".localized)
+        .task {
+            await viewModel.getNYCSchoolList()
+        }
+    }
+    
+    private var NYCSchoolView: some View {
+        List {
+            ForEach(viewModel.search(), id: \.id) { item in
+                NavigationLink(destination: {
+                    viewModel.coordinator.enqueueRoute(with: .goToDetailsView(viewModel: item), animated: true, completion: nil)
+                }){
+                    HomeViewCell(viewModel: item)
+                }
+            }
+        }.searchable(text: $viewModel.searchString)
+        .listStyle(.plain)
+        .navigationTitle("home.title".localized)
+        .navigationBarTitleDisplayMode(.inline)
+    }
+    
+    private var errorView: some View {
+        VStack {
+            Image("error-icon")
+                .frame(width: 50.0, height: 50.0)
+            Text("Error View")
+            .navigationBarTitleDisplayMode(.inline)
+            .navigationTitle("home.title".localized)
+        }
     }
 }
 
@@ -70,7 +84,7 @@ struct HomeViewCell: View {
                 .padding([.top], 5)
             Spacer(minLength: 0.1)
             VStack(alignment: .leading, spacing: 3) {
-                Text(viewModel.school.overview_paragraph ?? " ")
+                Text(viewModel.school.location ?? " ")
                     .font(.subheadline)
                     .foregroundColor(.secondary)
                     .lineLimit(2)
