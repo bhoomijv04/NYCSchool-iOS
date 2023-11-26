@@ -41,7 +41,6 @@ extension NetworkingService : NetworkingServiceProtocol {
         }
         
         let jsonDecoder = JSONDecoder()
-        jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
         
         do {
             let data = try jsonDecoder.decode(T.self, from: response.0)
