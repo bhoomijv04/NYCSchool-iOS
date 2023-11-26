@@ -36,33 +36,17 @@ public struct SchoolDetailView: View {
                         .padding([.top], 5)
                 }
                 
-                Text("SAT Result:")
-                    .font(.subheadline)
-                    .fontWeight(.semibold)
-                    .padding([.top], 5)
-                SATscoreView
+               
+                satScoreContainerView
+                eligibilityView
                 
-                Text("Eligibility Criteria:")
-                    .font(.subheadline)
-                    .fontWeight(.semibold)
-                    .padding([.top], 5)
                 
-                Text("Academic Opportunities:")
-                    .font(.subheadline)
-                    .fontWeight(.semibold)
-                    .padding([.top], 5)
+                if viewModel.schoolModel.school.acedemicOpportunities.count > 0 {
+                    opportunityView
+                }
                 
-                if let activities = viewModel.schoolModel.school.extracurricular_activities {
-                    VStack(alignment: .leading, spacing: 5) {
-                        Text("Extracurricular Activities:")
-                            .font(.subheadline)
-                            .fontWeight(.semibold)
-                            .padding([.top], 5)
-                        Text(activities)
-                            .multilineTextAlignment(.leading)
-                            .font(.subheadline)
-                            .foregroundColor(.secondary)
-                    }
+                if (viewModel.schoolModel.school.extracurricular_activities != nil) {
+                    extraActitivyView
                 }
                 
                 VStack(alignment: .leading, spacing: 5) {
@@ -145,6 +129,89 @@ public struct SchoolDetailView: View {
                     )
                 Text ("No of Students")
                     .font(.footnote)
+            }
+        }
+    }
+    
+    private var opportunityView: some View {
+        VStack(alignment: .leading, spacing: 5) {
+            Text("Academic Opportunities:")
+                .font(.subheadline)
+                .fontWeight(.semibold)
+                .padding([.top], 5)
+            if viewModel.schoolModel.school.acedemicOpportunities.count > 0 {
+                ForEach(viewModel.schoolModel.school.acedemicOpportunities, id: \.self) { bulletPoint in
+                    HStack(alignment: .top) {
+                        Text(" •")
+                        Text(bulletPoint)
+                    }
+                    .font(.subheadline)
+                    .foregroundColor(.secondary)
+                    .accessibilityLabel("Bullet Points")
+                }
+            } else {
+                Text("No Data Available.")
+                    .font(.subheadline)
+                    .foregroundColor(.secondary)
+                    .padding([.top], 5)
+            }
+        }
+        .padding(.horizontal, 5)
+    }
+    
+    private var extraActitivyView: some View {
+        VStack(alignment: .leading, spacing: 5) {
+            Text("Extracurricular Activities:")
+                .font(.subheadline)
+                .fontWeight(.semibold)
+                .padding([.top], 5)
+            Text(viewModel.schoolModel.school.extracurricular_activities ?? "")
+                .multilineTextAlignment(.leading)
+                .font(.subheadline)
+                .foregroundColor(.secondary)
+        }
+    }
+    
+    private var eligibilityView: some View {
+        VStack(alignment: .leading, spacing: 5) {
+            Text("Eligibility Criteria:")
+                .font(.subheadline)
+                .fontWeight(.semibold)
+                .padding([.top], 5)
+            if viewModel.schoolModel.school.acedemicRequirnment.count > 0 {
+                ForEach(viewModel.schoolModel.school.acedemicRequirnment, id: \.self) { bulletPoint in
+                    HStack(alignment: .top) {
+                        Text(" •")
+                        Text(bulletPoint)
+                    }
+                    .font(.subheadline)
+                    .foregroundColor(.secondary)
+                    .accessibilityLabel("Bullet Points")
+                }
+            } else {
+                Text("No Data Available.")
+                    .font(.subheadline)
+                    .foregroundColor(.secondary)
+                    .padding([.top], 5)
+            }
+        }
+        .padding(.horizontal, 5)
+    }
+    
+    private var satScoreContainerView: some View {
+        VStack(alignment: .leading, spacing: 5) {
+            Text("SAT Result:")
+                .font(.subheadline)
+                .fontWeight(.semibold)
+                .padding([.top], 5)
+            if (viewModel.schoolModel.score == nil) {
+                Text("No Data Available.")
+                    .font(.subheadline)
+                    .foregroundColor(.secondary)
+                    .padding([.top], 5)
+                SATscoreView
+            } else {
+                SATscoreView
             }
         }
     }

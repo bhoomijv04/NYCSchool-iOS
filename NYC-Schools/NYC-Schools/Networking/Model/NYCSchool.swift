@@ -30,9 +30,11 @@ public struct NYCSchool: Decodable {
     public let borough: String?
     public var location: String?
     public var extracurricular_activities: String?
+    public var acedemicOpportunities: [String] = []
+    public var acedemicRequirnment: [String] = []
     
     
-    public init(dbn: String, name: String, overview: String?, phoneNumber: String?, email: String?, website: String?, totalStudents: String?, graduationRate: Double?, attendanceRate: Double?, latitude: Double?, longitude: Double?, borough: String?, location: String?, extracurricular_activities: String?) {
+    public init(dbn: String, name: String, overview: String?, phoneNumber: String?, email: String?, website: String?, totalStudents: String?, graduationRate: Double?, attendanceRate: Double?, latitude: Double?, longitude: Double?, borough: String?, location: String?, extracurricular_activities: String?, acedemicOpportunities: [String], acedemicRequirnment: [String]) {
         self.dbn = dbn
         self.school_name = name
         self.overview_paragraph = overview
@@ -47,10 +49,12 @@ public struct NYCSchool: Decodable {
         self.borough = borough
         self.location = location
         self.extracurricular_activities = extracurricular_activities
+        self.acedemicOpportunities = acedemicOpportunities
+        self.acedemicRequirnment = acedemicRequirnment
     }
     
     enum CodingKeys: String, CodingKey {
-        case dbn, phone_number, website, total_students, graduation_rate, attendance_rate, latitude, longitude, borough, school_name, overview_paragraph, school_email, location, extracurricular_activities
+        case dbn, phone_number, website, total_students, graduation_rate, attendance_rate, latitude, longitude, borough, school_name, overview_paragraph, school_email, location, extracurricular_activities, academicopportunities1, academicopportunities2, academicopportunities3,  academicopportunities4,  academicopportunities5, requirement1_1, requirement2_1, requirement3_1, requirement4_1, requirement5_1, eligibility1
     }
     
     public init(from decoder: Decoder) throws {
@@ -83,5 +87,39 @@ public struct NYCSchool: Decodable {
         }
         extracurricular_activities =  try? values.decode(String.self, forKey: .extracurricular_activities)
         
+        if let opportunity1 = try? values.decode(String.self, forKey: .academicopportunities1) {
+            acedemicOpportunities.append(opportunity1)
+        }
+        if let opportunity2 = try? values.decode(String.self, forKey: .academicopportunities2) {
+            acedemicOpportunities.append(opportunity2)
+        }
+        if let opportunity3 = try? values.decode(String.self, forKey: .academicopportunities3) {
+            acedemicOpportunities.append(opportunity3)
+        }
+        if let opportunity4 = try? values.decode(String.self, forKey: .academicopportunities4) {
+            acedemicOpportunities.append(opportunity4)
+        }
+        if let opportunity5 = try? values.decode(String.self, forKey: .academicopportunities5) {
+            acedemicOpportunities.append(opportunity5)
+        }
+        
+        if let requirnment1 = try? values.decode(String.self, forKey: .requirement1_1) {
+            acedemicRequirnment.append(requirnment1)
+        }
+        if let requirnment2 = try? values.decode(String.self, forKey: .requirement2_1) {
+            acedemicRequirnment.append(requirnment2)
+        }
+        if let requirnment3 = try? values.decode(String.self, forKey: .requirement3_1) {
+            acedemicRequirnment.append(requirnment3)
+        }
+        if let requirnment4 = try? values.decode(String.self, forKey: .requirement4_1) {
+            acedemicRequirnment.append(requirnment4)
+        }
+        if let requirnment5 = try? values.decode(String.self, forKey: .requirement5_1) {
+            acedemicRequirnment.append(requirnment5)
+        }
+        if let eligibility1 = try? values.decode(String.self, forKey: .eligibility1) {
+            acedemicRequirnment.append(eligibility1)
+        }
     }
 }
