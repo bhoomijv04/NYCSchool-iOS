@@ -41,7 +41,7 @@ public struct SchoolDetailView: View {
                 extraActitivyView
                 contactUSView
             }
-            .padding()
+            .padding([.leading, .trailing], 15)
         }
         .navigationTitle("home.title".localized)
     }
@@ -57,14 +57,8 @@ public struct SchoolDetailView: View {
             if let maths = viewModel.schoolModel.score?.sat_math_avg_score {
                 makeScoreView(title: "score.maths".localized, value: maths)
             }
-            
-            
             if let total = viewModel.getTotalScore() {
-                makeScoreView(title: "Total Score".localized, value: "\(total)")
-            }
-            
-            if let attended = viewModel.schoolModel.score?.num_of_sat_test_takers{
-                makeScoreView(title: "score.attended.student".localized, value: attended)
+                makeScoreView(title: "score.total".localized, value: "\(total)")
             }
             
         }.padding([.top], 5)
@@ -108,7 +102,6 @@ public struct SchoolDetailView: View {
                     .padding([.top], 5)
             }
         }
-        .padding(.horizontal, 5)
     }
     
     private var extraActitivyView: some View {
@@ -147,7 +140,6 @@ public struct SchoolDetailView: View {
                     .padding([.top], 5)
             }
         }
-        .padding(.horizontal, 5)
     }
     
     private var satScoreContainerView: some View {
@@ -181,22 +173,22 @@ public struct SchoolDetailView: View {
                 .font(.subheadline)
                 .foregroundColor(.secondary)
             if let number = viewModel.schoolModel.school.phone_number {
-                Text("\("school.phone".localized): \(number)")
+                Label(number, systemImage: "phone")
                     .font(.subheadline)
                     .foregroundColor(.secondary)
             }
             if let Fax = viewModel.schoolModel.school.fax_number {
-                Text("\("school.fax".localized): \(Fax)")
+                Label(Fax, systemImage: "faxmachine")
                     .font(.subheadline)
                     .foregroundColor(.secondary)
             }
             if let email = viewModel.schoolModel.school.school_email {
-                Text(email)
+                Label(email, systemImage: "envelope")
                     .font(.subheadline)
                     .foregroundColor(.secondary)
             }
             if let website = viewModel.schoolModel.school.website {
-                Text(website)
+                Label(website, systemImage: "globe")
                     .font(.subheadline)
                     .foregroundColor(.secondary)
             }
