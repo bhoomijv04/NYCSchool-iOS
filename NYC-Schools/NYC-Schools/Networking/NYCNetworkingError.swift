@@ -8,15 +8,16 @@
 import Foundation
 
 // MARK: Network Error
-enum NetworkingError: Error {
+enum NYCNetworkingError: Error {
     case invalidURL
     case customError(error: Error)
     case invalidStatusCode(statusCode: Int)
     case failedToDecode
+    case noInternet
 }
 
-extension NetworkingError: Equatable {
-    static func == (lhs: NetworkingError, rhs: NetworkingError) -> Bool {
+extension NYCNetworkingError: Equatable {
+    static func == (lhs: NYCNetworkingError, rhs: NYCNetworkingError) -> Bool {
         switch (lhs, rhs) {
             case (.invalidURL, .invalidURL):
                 return true

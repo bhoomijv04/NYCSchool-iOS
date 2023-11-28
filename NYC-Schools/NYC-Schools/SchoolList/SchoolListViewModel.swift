@@ -11,12 +11,17 @@ public final class SchoolListViewModel: ObservableObject {
     
     public enum RouteType {
         case goToDetailsView(viewModel: SchoolListCellViewModel)
+        case callNumber(number: String)
+        case sendEmail(email: String)
+        case opnLink(link: String)
+        case openMap(lat: Double, long: Double, name: String)
     }
     
     public enum HomeViewState: Equatable {
         case noContent
         case success
         case error
+        case noInternet
     }
     
     @Published var searchString = ""
@@ -24,11 +29,11 @@ public final class SchoolListViewModel: ObservableObject {
     @Published private(set) var schools: [SchoolListCellViewModel] = [SchoolListCellViewModel]()
     
     public let coordinator: any SwiftUIEnqueueCoordinator<SchoolListViewModel.RouteType>
-    private let schoolService: SchoolServiceProtocol = SchoolService.shared
-    private let commonVC: CommanUtilitiesProtocol = CommanUtilities.shared
+    public let schoolService: SchoolServiceProtocol
     
-    public init(coordinator: any SwiftUIEnqueueCoordinator<SchoolListViewModel.RouteType>) {
+    public init(coordinator: any SwiftUIEnqueueCoordinator<SchoolListViewModel.RouteType>, schoolService: SchoolServiceProtocol) {
         self.coordinator = coordinator
+        self.schoolService = schoolService
     }
     
     public func getNYCSchoolList() async {
@@ -46,8 +51,8 @@ public final class SchoolListViewModel: ObservableObject {
             await MainActor.run {
                 self.schools = school
                 state = .success
-                
             }
+
         } catch {
              // In case of error it load data from JSON
              let  scores = schoolService.fetchSATScoreFromJSON()
@@ -58,32 +63,36 @@ public final class SchoolListViewModel: ObservableObject {
              return schoolViewModel(school: school, score: score.first)
              
              }
-             await MainActor.run {
-             self.schools = schools
-             state = .success
-             }
+            await MainActor.run {
+                self.schools = schools
+                state = .success
+            }
            /* await MainActor.run {
                 state = .error
             }*/
         }
     }
     
+    // configure cell view model
     func schoolViewModel(school: NYCSchool, score: NYCSchoolScore?) -> SchoolListCellViewModel {
         return SchoolListCellViewModel(data: school, score: score, openURL: { [weak self] url in
             if let urlString = url {
-                self?.commonVC.openURL(urlString: urlString)
+                self?.coordinator.enqueueRoute(with: .opnLink(link: urlString), animated: true, completion: nil)
             }
-            
         }, callPhone: { [weak self] number in
             if let phoneNumber = number {
-                self?.commonVC.callPhone(phone: phoneNumber)
+                self?.coordinator.enqueueRoute(with: .callNumber(number: phoneNumber), animated: true, completion: nil)
             }
             
         }, openMap: { [weak self] school in
-            self?.commonVC.openMap(school: school)
+            if let latitude = school.latitude, let longitude = school.longitude {
+                self?.coordinator.enqueueRoute(with: .openMap(lat: latitude, long: longitude, name: school.school_name), animated: true, completion: nil)
+            }
             
         }, openEmail: { [weak self] email in
-            // self?.commonVC.sendEmail(root: self?.coordinator.rootHostingController?.navigationController)
+            if let email = email {
+                self?.coordinator.enqueueRoute(with: .sendEmail(email: email), animated: true, completion: nil)
+            }
         })
     }
 

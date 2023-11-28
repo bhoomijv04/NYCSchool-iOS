@@ -11,18 +11,20 @@ struct NYCErrorView: View {
     private var title: String
     private var subTitle: String
     private var retryBtnText: String
+    private var imageName: String
     private let action: () -> Void
     
-    init(title: String, subTitle: String, retryBtnText: String, action: @escaping () -> Void ) {
+    init(title: String, subTitle: String, retryBtnText: String, imageName: String, action: @escaping () -> Void ) {
         self.title = title
         self.subTitle = subTitle
         self.action = action
         self.retryBtnText = retryBtnText
+        self.imageName = imageName
     }
     
     var body: some View {
         VStack(alignment: .center) {
-            Image(systemName: "exclamationmark.triangle").renderingMode(.template)
+            Image(systemName: imageName).renderingMode(.template)
                 .resizable()
                 .scaledToFit()
                 .frame(width: 70, height: 70)

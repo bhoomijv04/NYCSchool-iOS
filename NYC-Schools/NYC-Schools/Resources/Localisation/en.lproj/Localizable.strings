@@ -25,3 +25,8 @@
 "score.total" = "Total";
 "score.attended.student" = "Test Takers";
 "score.sat.score" = "SAT Scores";
+
+//Error
+"general.email.error" = "Not able to send an email. \n Please try again";
+"general.network.error" = "No Internet Connection";
+"general.network.error.description" = "Please check your connection and try again.";

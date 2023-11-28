@@ -27,7 +27,19 @@ public struct SchoolListView: View {
             case .error:
                 NYCErrorView(title:"generic.error.title".localized,
                              subTitle: "generic.error.description".localized,
-                             retryBtnText: "generic.retry.title".localized) {
+                             retryBtnText: "generic.retry.title".localized,
+                             imageName: "exclamationmark.triangle") {
+                    Task {
+                        await viewModel.getNYCSchoolList()
+                    }
+                }
+                .navigationBarTitleDisplayMode(.inline)
+                .navigationTitle("home.title".localized)
+            case .noInternet:
+                NYCErrorView(title:"general.network.error".localized,
+                             subTitle: "general.network.error.description".localized,
+                             retryBtnText: "generic.retry.title".localized,
+                             imageName: "wifi.exclamationmark") {
                     Task {
                         await viewModel.getNYCSchoolList()
                     }

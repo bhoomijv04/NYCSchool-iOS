@@ -52,7 +52,7 @@ public struct SchoolListViewCell: View {
                     .buttonStyle(.bordered)
                     .tint(.blue)
                     Button {
-                        
+                        viewModel.sendEmail(addresss:  viewModel.school.school_email)
                     } label: {
                         Image(systemName: "envelope").renderingMode(.template)
                     }

@@ -39,11 +39,11 @@ public final class SchoolListCellViewModel: ObservableObject {
     }
     
     public func openMap(school: NYCSchool) {
-        self.openMap(school)
+        openMap(school)
     }
     
     func sendEmail(addresss: String?) {
-        self.openEmail(addresss)
+      openEmail(addresss)
     }
 }
 

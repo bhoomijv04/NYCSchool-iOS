@@ -18,7 +18,6 @@ public final class SchoolDetailViewModel: ObservableObject {
     private(set) var schoolModel: SchoolListCellViewModel
     
     private let coordinator: any SwiftUIEnqueueCoordinator<SchoolDetailViewModel.RouteType>
-    private let schoolService: SchoolServiceProtocol = SchoolService.shared
     
     public init(coordinator: any SwiftUIEnqueueCoordinator<SchoolDetailViewModel.RouteType>, schoolModel: SchoolListCellViewModel) {
         self.coordinator = coordinator
