@@ -7,10 +7,10 @@
 
 import Foundation
 
-public final class HomeViewModel: ObservableObject {
+public final class SchoolListViewModel: ObservableObject {
     
     public enum RouteType {
-        case goToDetailsView(viewModel: HomeViewCellViewModel)
+        case goToDetailsView(viewModel: SchoolListCellViewModel)
     }
     
     public enum HomeViewState: Equatable {
@@ -21,13 +21,13 @@ public final class HomeViewModel: ObservableObject {
     
     @Published var searchString = ""
     @Published public private(set) var state: HomeViewState = .noContent
-    @Published private(set) var schools: [HomeViewCellViewModel] = [HomeViewCellViewModel]()
+    @Published private(set) var schools: [SchoolListCellViewModel] = [SchoolListCellViewModel]()
     
-    public let coordinator: any SwiftUIEnqueueCoordinator<HomeViewModel.RouteType>
+    public let coordinator: any SwiftUIEnqueueCoordinator<SchoolListViewModel.RouteType>
     private let schoolService: SchoolServiceProtocol = SchoolService.shared
     private let commonVC: CommanUtilitiesProtocol = CommanUtilities.shared
     
-    public init(coordinator: any SwiftUIEnqueueCoordinator<HomeViewModel.RouteType>) {
+    public init(coordinator: any SwiftUIEnqueueCoordinator<SchoolListViewModel.RouteType>) {
         self.coordinator = coordinator
     }
     
@@ -68,8 +68,8 @@ public final class HomeViewModel: ObservableObject {
         }
     }
     
-    func schoolViewModel(school: NYCSchool, score: NYCSchoolScore?) -> HomeViewCellViewModel {
-        return HomeViewCellViewModel(data: school, score: score, openURL: { [weak self] url in
+    func schoolViewModel(school: NYCSchool, score: NYCSchoolScore?) -> SchoolListCellViewModel {
+        return SchoolListCellViewModel(data: school, score: score, openURL: { [weak self] url in
             if let urlString = url {
                 self?.commonVC.openURL(urlString: urlString)
             }
@@ -87,7 +87,7 @@ public final class HomeViewModel: ObservableObject {
         })
     }
 
-    func search() -> [HomeViewCellViewModel] {
+    func search() -> [SchoolListCellViewModel] {
         if !searchString.isEmpty {
             return schools.filter { $0.school.school_name.lowercased().contains(searchString.lowercased().trimmingCharacters(in: .whitespacesAndNewlines)) }
         } else {

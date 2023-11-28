@@ -23,7 +23,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         // set up root View
         let window = UIWindow(windowScene: windowScene)
-        let viewController = HomeViewCoordinator().instantiateView()
+        let viewController = SchoolListViewCoordinator().instantiateView()
         let navigation = viewController
         window.rootViewController = navigation
         self.window = window

@@ -1,71 +1,22 @@
 //
-//  HomeView.swift
+//  SchoolListCellView.swift
 //  NYC-Schools
 //
-//  Created by Bhoomi Vadgama on 19/11/23.
+//  Created by Bhoomi Vadgama on 28/11/23.
 //
 
+import Foundation
 import SwiftUI
-import Combine
 
-public struct HomeView: View {
+public struct SchoolListViewCell: View {
     
-    @ObservedObject private var viewModel: HomeViewModel
+    @ObservedObject private var viewModel: SchoolListCellViewModel
     
-    public init(viewModel: HomeViewModel) {
+    init(viewModel: SchoolListCellViewModel) {
         self.viewModel = viewModel
     }
+    
     public var body: some View {
-        NavigationView {
-            switch viewModel.state {
-            case .success:
-                NYCSchoolList
-            case .noContent:
-                NYCLoadingView(isAnimating: true) {
-                    $0.hidesWhenStopped = false
-                }
-            case .error:
-                NYCErrorView(title:"generic.error.title".localized,
-                             subTitle: "generic.error.description".localized,
-                             retryBtnText: "generic.retry.title".localized) {
-                    Task {
-                        await viewModel.getNYCSchoolList()
-                    }
-                }
-                .navigationBarTitleDisplayMode(.inline)
-                .navigationTitle("home.title".localized)
-            }
-        }
-        .task {
-            await viewModel.getNYCSchoolList()
-        }
-    }
-    
-    private var NYCSchoolList: some View {
-        List {
-            ForEach(viewModel.search(), id: \.id) { item in
-                NavigationLink(destination: {
-                    viewModel.coordinator.enqueueRoute(with: .goToDetailsView(viewModel: item), animated: true, completion: nil)
-                }){
-                    HomeViewCell(viewModel: item)
-                }
-            }
-        }.searchable(text: $viewModel.searchString)
-        .listStyle(.plain)
-        .navigationTitle("home.title".localized)
-        .navigationBarTitleDisplayMode(.inline)
-    }
-}
-
-struct HomeViewCell: View {
-    
-    @ObservedObject private var viewModel: HomeViewCellViewModel
-    
-    init(viewModel: HomeViewCellViewModel) {
-        self.viewModel = viewModel
-    }
-    
-    var body: some View {
         VStack(alignment: .leading, spacing: 3) {
             Text(viewModel.school.school_name.capitalized)
                 .foregroundColor(.primary)

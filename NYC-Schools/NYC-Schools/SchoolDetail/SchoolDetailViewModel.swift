@@ -15,12 +15,12 @@ public final class SchoolDetailViewModel: ObservableObject {
         case openMap
     }
     
-    private(set) var schoolModel: HomeViewCellViewModel
+    private(set) var schoolModel: SchoolListCellViewModel
     
     private let coordinator: any SwiftUIEnqueueCoordinator<SchoolDetailViewModel.RouteType>
     private let schoolService: SchoolServiceProtocol = SchoolService.shared
     
-    public init(coordinator: any SwiftUIEnqueueCoordinator<SchoolDetailViewModel.RouteType>, schoolModel: HomeViewCellViewModel) {
+    public init(coordinator: any SwiftUIEnqueueCoordinator<SchoolDetailViewModel.RouteType>, schoolModel: SchoolListCellViewModel) {
         self.coordinator = coordinator
         self.schoolModel = schoolModel
     }
