@@ -64,7 +64,7 @@ iOS
 ### Features
 
 * Lastest iOS App
-* Swift and Swift UI
+* Swift, Swift UI, Async - Await
 * NYC Open Data integration
 * Error handling
 * Unit test case
