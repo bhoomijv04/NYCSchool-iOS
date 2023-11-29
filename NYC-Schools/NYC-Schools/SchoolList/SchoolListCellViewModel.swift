@@ -1,5 +1,5 @@
 //
-//  SchoolDataModel.swift
+//  SchoolListCellViewModel.swift
 //  NYC-Schools
 //
 //  Created by Bhoomi Vadgama on 20/11/23.

@@ -42,7 +42,6 @@
       <a href="#getting-started">Getting Started</a>
       <ul>
         <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#screen-shots">Screen Shots</a></li>
       </ul>
     </li>
     <li><a href="#contributors">Supporter</a></li>
@@ -54,6 +53,8 @@
 ## About The Project
 
 iOS application to view different school's free public data published by New York City agencies and other partners.
+
+![alt text](https://github.com/bhoomijv04/20231118-BhoomiVadgama-NYCSchools/blob/main/Screenshots/SchoolList.png?raw=true)
 
 ### Built With
 

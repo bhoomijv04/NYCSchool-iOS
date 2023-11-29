@@ -1,5 +1,5 @@
 //
-//  NetworkError.swift
+//  NYCNetworkingError.swift
 //  NYC-Schools
 //
 //  Created by Bhoomi Vadgama on 23/11/23.
