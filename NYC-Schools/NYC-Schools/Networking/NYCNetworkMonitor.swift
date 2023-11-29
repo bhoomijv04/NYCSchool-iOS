@@ -16,14 +16,7 @@ class NYCNetworkMonitor: ObservableObject {
 
     init() {
         networkMonitor.pathUpdateHandler = { path in
-            switch path.status {
-            case .satisfied:
-                // Networking connection restored
-                self.isConnected = true
-            default:
-                // There's no connection available
-                self.isConnected = false
-            }
+            self.isConnected = path.status == .satisfied
         }
         networkMonitor.start(queue: workerQueue)
     }

@@ -12,7 +12,7 @@ public protocol NetworkingServiceProtocol {
     func makeRequest<T: Decodable>(_ absoluteURL: String) async throws -> T
 }
 
-public final class NYCNetworkingService: NSObject {
+public final class NYCNetworkingService: ObservableObject {
     static let shared = NYCNetworkingService()
     private var networkMonitor = NYCNetworkMonitor()
     struct Authorization {
@@ -25,7 +25,8 @@ extension NYCNetworkingService : NetworkingServiceProtocol {
         
         let configuration = URLSessionConfiguration.default
         configuration.waitsForConnectivity = true
-        configuration.timeoutIntervalForRequest = 60
+        configuration.timeoutIntervalForRequest = TimeInterval(60)
+        configuration.timeoutIntervalForResource = TimeInterval(60)
         
        let session = URLSession(configuration: configuration)
         
@@ -59,22 +60,4 @@ extension NYCNetworkingService : NetworkingServiceProtocol {
             throw NYCNetworkingError.failedToDecode
         }
     }
-}
-
-extension NYCNetworkingService: URLSessionDelegate {
-    public func urlSession(_: URLSession, task _: URLSessionTask, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
-        guard let serverTrust = challenge.protectionSpace.serverTrust else {
-            return completionHandler(URLSession.AuthChallengeDisposition.useCredential, nil)
-        }
-        return completionHandler(URLSession.AuthChallengeDisposition.useCredential, URLCredential(trust: serverTrust))
-    }
-}
-
-// MARK: AVOID SSL Certifficate Error
-extension URLRequest {
-#if DEBUG
-    static func allowsAnyHTTPSCertificate(forHost host: String) -> Bool {
-        return true
-    }
-#endif
 }
