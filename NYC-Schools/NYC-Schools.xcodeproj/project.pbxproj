@@ -7,9 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0E27189A2B172E1F007374D2 /* SchoolDetail.png in Resources */ = {isa = PBXBuildFile; fileRef = 0E2718972B172E1F007374D2 /* SchoolDetail.png */; };
-		0E27189B2B172E1F007374D2 /* SchoolDetail2.png in Resources */ = {isa = PBXBuildFile; fileRef = 0E2718982B172E1F007374D2 /* SchoolDetail2.png */; };
-		0E27189C2B172E1F007374D2 /* SchoolList.png in Resources */ = {isa = PBXBuildFile; fileRef = 0E2718992B172E1F007374D2 /* SchoolList.png */; };
 		7466D9322B162B59004F370C /* SchoolListViewCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7466D9312B162B59004F370C /* SchoolListViewCoordinator.swift */; };
 		7466D9352B162BB0004F370C /* SchoolListCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7466D9332B162BB0004F370C /* SchoolListCellViewModel.swift */; };
 		7466D9362B162BB0004F370C /* SchoolListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7466D9342B162BB0004F370C /* SchoolListView.swift */; };
@@ -54,9 +51,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0E2718972B172E1F007374D2 /* SchoolDetail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SchoolDetail.png; sourceTree = "<group>"; };
-		0E2718982B172E1F007374D2 /* SchoolDetail2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SchoolDetail2.png; sourceTree = "<group>"; };
-		0E2718992B172E1F007374D2 /* SchoolList.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SchoolList.png; sourceTree = "<group>"; };
 		7466D9312B162B59004F370C /* SchoolListViewCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchoolListViewCoordinator.swift; sourceTree = "<group>"; };
 		7466D9332B162BB0004F370C /* SchoolListCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchoolListCellViewModel.swift; sourceTree = "<group>"; };
 		7466D9342B162BB0004F370C /* SchoolListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchoolListView.swift; sourceTree = "<group>"; };
@@ -111,16 +105,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0E2718962B172E1F007374D2 /* Screenshots */ = {
-			isa = PBXGroup;
-			children = (
-				0E2718992B172E1F007374D2 /* SchoolList.png */,
-				0E2718972B172E1F007374D2 /* SchoolDetail.png */,
-				0E2718982B172E1F007374D2 /* SchoolDetail2.png */,
-			);
-			path = Screenshots;
-			sourceTree = "<group>";
-		};
 		7466D93B2B163AB6004F370C /* SchoolList */ = {
 			isa = PBXGroup;
 			children = (
@@ -202,7 +186,6 @@
 		7490178C2B0A4BB0003968BC /* NYC-Schools */ = {
 			isa = PBXGroup;
 			children = (
-				0E2718962B172E1F007374D2 /* Screenshots */,
 				749017C82B0A557C003968BC /* AppFlow */,
 				749017BF2B0A4D1C003968BC /* SchoolList */,
 				748569742B0F5B58000CD4BB /* SchoolDetail */,
@@ -370,11 +353,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				7490179A2B0A4BB2003968BC /* LaunchScreen.storyboard in Resources */,
-				0E27189B2B172E1F007374D2 /* SchoolDetail2.png in Resources */,
 				749017CE2B0A58E8003968BC /* Localizable.strings in Resources */,
-				0E27189A2B172E1F007374D2 /* SchoolDetail.png in Resources */,
 				749017D92B0A8459003968BC /* scoresData.json in Resources */,
-				0E27189C2B172E1F007374D2 /* SchoolList.png in Resources */,
 				749017972B0A4BB2003968BC /* Assets.xcassets in Resources */,
 				749017D82B0A8459003968BC /* schoolsList.json in Resources */,
 			);
