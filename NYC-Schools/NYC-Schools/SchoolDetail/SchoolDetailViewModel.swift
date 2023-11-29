@@ -7,7 +7,7 @@
 
 import Foundation
 
-public final class SchoolDetailViewModel: ObservableObject {
+public final class SchoolDetailViewModel {
     
     public enum RouteType {
         case callNumber

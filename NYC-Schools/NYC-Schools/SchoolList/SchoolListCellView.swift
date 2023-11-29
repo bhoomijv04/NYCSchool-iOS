@@ -10,7 +10,7 @@ import SwiftUI
 
 public struct SchoolListViewCell: View {
     
-    @ObservedObject private var viewModel: SchoolListCellViewModel
+    private var viewModel: SchoolListCellViewModel
     
     init(viewModel: SchoolListCellViewModel) {
         self.viewModel = viewModel

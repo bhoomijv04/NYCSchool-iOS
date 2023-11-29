@@ -8,7 +8,7 @@
 import Foundation
 
 
-public final class SchoolDetaislScoreModel: ObservableObject {
+public final class SchoolDetaislScoreModel {
     
     public var school: NYCSchoolScore
     

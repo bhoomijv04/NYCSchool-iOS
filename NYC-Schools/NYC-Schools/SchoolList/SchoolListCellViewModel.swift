@@ -10,7 +10,7 @@ import UIKit
 import MapKit
 import MessageUI
 
-public final class SchoolListCellViewModel: ObservableObject {
+public final class SchoolListCellViewModel {
     
     public var school: NYCSchool
     public var score: NYCSchoolScore?
