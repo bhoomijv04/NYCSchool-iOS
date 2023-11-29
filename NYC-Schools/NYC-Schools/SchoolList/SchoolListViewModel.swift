@@ -36,6 +36,7 @@ public final class SchoolListViewModel: ObservableObject {
         self.schoolService = schoolService
     }
     
+    // MARK: fetch school and score details
     public func getNYCSchoolList() async {
         await MainActor.run {
             state = .noContent
@@ -65,7 +66,7 @@ public final class SchoolListViewModel: ObservableObject {
         }
     }
     
-    // configure cell view model
+    // MARK: Cofigure school cell
     func schoolViewModel(school: NYCSchool, score: NYCSchoolScore?) -> SchoolListCellViewModel {
         return SchoolListCellViewModel(data: school, score: score, openURL: { [weak self] url in
             if let urlString = url {
@@ -88,6 +89,7 @@ public final class SchoolListViewModel: ObservableObject {
         })
     }
 
+    // MARK: search school data
     func search() -> [SchoolListCellViewModel] {
         if !searchString.isEmpty {
             return schools.filter { $0.school.school_name.lowercased().contains(searchString.lowercased().trimmingCharacters(in: .whitespacesAndNewlines)) }

@@ -47,6 +47,7 @@ public struct SchoolDetailView: View {
         .padding([.bottom], 2)
     }
     
+    // MARK: SAT ScoreView
     private var SATscoreView: some View {
         HStack(alignment: .center,spacing: 5) {
             if let writing = viewModel.schoolModel.score?.sat_writing_avg_score {
@@ -80,6 +81,7 @@ public struct SchoolDetailView: View {
         }
     }
     
+    // MARK: opportunityView
     private var opportunityView: some View {
         VStack(alignment: .leading, spacing: 5) {
             Text("\("school.acedemic.opportunities".localized):")
@@ -105,6 +107,7 @@ public struct SchoolDetailView: View {
         }
     }
     
+    // MARK: extraActitivyView
     private var extraActitivyView: some View {
         VStack(alignment: .leading, spacing: 5) {
             Text("\("school.extra.activities".localized):")
@@ -118,6 +121,7 @@ public struct SchoolDetailView: View {
         }
     }
     
+    // MARK: eligibilityView
     private var eligibilityView: some View {
         VStack(alignment: .leading, spacing: 5) {
             Text("\("school.eligibility.criteria".localized):")
@@ -160,6 +164,7 @@ public struct SchoolDetailView: View {
         }
     }
     
+    // MARK: contactUSView
     private var contactUSView: some View {
         VStack(alignment: .leading, spacing: 5) {
             Text("\("school.contactus".localized):")

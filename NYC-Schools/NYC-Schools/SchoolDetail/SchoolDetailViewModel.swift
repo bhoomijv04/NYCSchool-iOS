@@ -24,6 +24,7 @@ public final class SchoolDetailViewModel: ObservableObject {
         self.schoolModel = schoolModel
     }
     
+    // MARK: calculate total score
     func getTotalScore() -> Int {
         var total = 0
         if let maths = schoolModel.score?.sat_math_avg_score {

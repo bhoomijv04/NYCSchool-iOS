@@ -21,17 +21,6 @@ final class SchoolDetailViewCoordinator: SwiftUIEnqueueCoordinator {
     }
     
     func enqueueRoute(with context: SchoolDetailViewModel.RouteType, animated: Bool, completion: ((Bool) -> Void)?) -> AnyView? {
-        switch context {
-            
-        case .openMap:
-            rootHostingController?.navigationController?.popViewController(animated: true)
-        
-        case .callNumber:
-            rootHostingController?.navigationController?.popViewController(animated: true)
-            
-        case .email:
-            rootHostingController?.navigationController?.popViewController(animated: true)
-        }
         return nil
     }
 }
