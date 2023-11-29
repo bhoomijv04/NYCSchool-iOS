@@ -67,5 +67,6 @@ public struct SchoolListView: View {
         .listStyle(.plain)
         .navigationTitle("home.title".localized)
         .navigationBarTitleDisplayMode(.inline)
+        .padding([.bottom], 2)
     }
 }

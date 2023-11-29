@@ -44,6 +44,7 @@ public struct SchoolDetailView: View {
             .padding([.leading, .trailing], 15)
         }
         .navigationTitle("home.title".localized)
+        .padding([.bottom], 2)
     }
     
     private var SATscoreView: some View {
