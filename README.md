@@ -53,21 +53,17 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-iOS application to view different schools free public data published by New York city agencies and other partners.
+iOS application to view different school's free public data published by New York City agencies and other partners.
 
 ### Built With
 
-Swift
-iOS
-
-
-### Features
-
-* Lastest iOS App
-* Swift, Swift UI, Async - Await
-* NYC Open Data integration
+* Swift
+* Swift UI
+* Async/Await
+* MVVM-C (Model View model coordinator)
+* Rest API - NYC Open Data integration
 * Error handling
-* Unit test case
+* XCTest Unit test case
 
 <!-- GETTING STARTED -->
 ## Getting Started
@@ -75,11 +71,10 @@ iOS
 
 ### Prerequisites
 
- 1. IDE ( XCode )
- 2. Swift and Swift UI Experience
- 3. NYC Open Data API key (https://opendata.cityofnewyork.us/)
-
-### Screen Shots
+ 1. Xcdoe 14.0+
+ 2. Swift 5.0+
+ 3. iOS 16.0+
+ 4. NYC Open Data API key (https://opendata.cityofnewyork.us/)
 
 ## Support
 
