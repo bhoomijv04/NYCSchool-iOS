@@ -53,23 +53,15 @@ public final class SchoolListViewModel: ObservableObject {
                 state = .success
             }
 
-        } catch {
-             // In case of error it load data from JSON
-             let  scores = schoolService.fetchSATScoreFromJSON()
-             let schools = schoolService.fetchSchoolListFromJSON().map { school in
-             let score = scores.filter { scoreValue in
-             return school.dbn == scoreValue.dbn
-             }
-             return schoolViewModel(school: school, score: score.first)
-             
-             }
+        }  catch NYCNetworkingError.noInternet {
             await MainActor.run {
-                self.schools = schools
-                state = .success
+                state = .noInternet
             }
-           /* await MainActor.run {
+            
+        } catch {
+            await MainActor.run {
                 state = .error
-            }*/
+            }
         }
     }
     

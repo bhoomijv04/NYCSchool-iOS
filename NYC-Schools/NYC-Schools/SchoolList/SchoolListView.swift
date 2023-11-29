@@ -23,6 +23,7 @@ public struct SchoolListView: View {
             case .noContent:
                 NYCLoadingView(isAnimating: true) {
                     $0.hidesWhenStopped = false
+                    $0.tintColor = UIColor.blue
                 }
             case .error:
                 NYCErrorView(title:"generic.error.title".localized,
